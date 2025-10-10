@@ -3,16 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Interactive Map with Hover Popups</title>
+  <title>Interactive Map with Draw & Hover Popups</title>
 
   <!-- Leaflet CSS -->
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/leaflet/dist/leaflet.css"
-  />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <!-- Leaflet Draw CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-draw/dist/leaflet.draw.css" />
 
   <style>
-    /* Full page map */
     html, body, #map {
       height: 100%;
       margin: 0;
@@ -26,87 +24,133 @@
 
 <!-- Leaflet JS -->
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<!-- Leaflet Draw JS -->
+<script src="https://unpkg.com/leaflet-draw/dist/leaflet.draw.js"></script>
+
 <script>
-  
+  // Initialize the map
   var map = L.map('map').setView([1.2966, 103.7764], 16);
 
+  // Add OpenStreetMap tiles
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '© OpenStreetMap contributors'
   }).addTo(map);
 
+  // === Predefined Polygon: Central Library ===
   var polygonCoords = [
     [1.2967, 103.7735],
     [1.2967, 103.7738],
     [1.2972, 103.7738],
     [1.2972, 103.7735]
   ];
-  
+
   var polygon = L.polygon(polygonCoords, {
-    color: '#0000FF', 
-    fillColor: '#ADD8E6', 
+    color: '#0000FF',
+    fillColor: '#ADD8E6',
     fillOpacity: 0.5,
     weight: 2
   }).addTo(map);
-  
+
   polygon.bindPopup(`
-  <b>Central Library</b><br>
-  <i>This is a relaxing place with air-conditioning for conducive studying.</i><br>
-  Stress Rating: ★☆☆☆☆<br>
-  Average Hours Spent: 5 hrs/week
-`);
+    <b>Central Library</b><br>
+    <i>This is a relaxing place with air-conditioning for conducive studying.</i><br>
+    Stress Rating: ★☆☆☆☆<br>
+    Average Hours Spent: 5 hrs/week
+  `);
 
   polygon.on('mouseover', function () {
-    this.setStyle({
-      fillColor: '#ff7800'
-    });
+    this.setStyle({ fillColor: '#ff7800' });
     this.openPopup();
   });
 
   polygon.on('mouseout', function () {
-    this.setStyle({
-      fillColor: '#90EE90'
-    });
+    this.setStyle({ fillColor: '#ADD8E6' });
     this.closePopup();
   });
 
-var secondPolygonCoords = [
-  [1.2960, 103.7745],
-  [1.2960, 103.7748],
-  [1.2965, 103.7748],
-  [1.2965, 103.7745]
-];
+  // === Second Polygon: Mochtar Riady Building ===
+  var secondPolygonCoords = [
+    [1.2960, 103.7745],
+    [1.2960, 103.7748],
+    [1.2965, 103.7748],
+    [1.2965, 103.7745]
+  ];
 
-var secondPolygon = L.polygon(secondPolygonCoords, {
-  color: '#0000FF', 
-  fillColor: '#ADD8E6', 
-  fillOpacity: 0.5,
-  weight: 2
-}).addTo(map);
+  var secondPolygon = L.polygon(secondPolygonCoords, {
+    color: '#0000FF',
+    fillColor: '#ADD8E6',
+    fillOpacity: 0.5,
+    weight: 2
+  }).addTo(map);
 
-secondPolygon.bindPopup(`
-  <b>Mochtar Riady Building B</b><br>
-  <i>A glass building where lectures and tutorials are conducted.</i><br>
-  Stress Rating: ★★★★☆<br>
-  Average Hours Spent: 10 hrs/week
-`);
+  secondPolygon.bindPopup(`
+    <b>Mochtar Riady Building</b><br>
+    <i>A glass building where lectures and tutorials are conducted.</i><br>
+    Stress Rating: ★★★★☆<br>
+    Average Hours Spent: 10 hrs/week
+  `);
 
-secondPolygon.on('mouseover', function () {
-  this.setStyle({
-    fillColor: '#0000FF' 
+  secondPolygon.on('mouseover', function () {
+    this.setStyle({ fillColor: '#0000FF' });
+    this.openPopup();
   });
-  this.openPopup();
-});
 
-secondPolygon.on('mouseout', function () {
-  this.setStyle({
-    fillColor: '#ADD8E6'
+  secondPolygon.on('mouseout', function () {
+    this.setStyle({ fillColor: '#ADD8E6' });
+    this.closePopup();
   });
-  this.closePopup();
-});
 
+  // === Leaflet Draw Setup ===
+  // Create a layer group to store drawn items
+  var drawnItems = new L.FeatureGroup();
+  map.addLayer(drawnItems);
 
+  // Add drawing controls to the map
+  var drawControl = new L.Control.Draw({
+    draw: {
+      polyline: false,
+      rectangle: false,
+      circle: false,
+      marker: false,
+      circlemarker: false,
+      polygon: {
+        allowIntersection: false,
+        showArea: true,
+        drawError: {
+          color: '#e1e100',
+          message: '<strong>Error:</strong> You can’t draw that!'
+        },
+        shapeOptions: {
+          color: '#FF0000',
+          fillColor: '#FFA07A',
+          fillOpacity: 0.5
+        }
+      }
+    },
+    edit: {
+      featureGroup: drawnItems,
+      edit: true,
+      remove: true
+    }
+  });
 
-  
+  map.addControl(drawControl);
+
+  // Handle created polygons
+  map.on(L.Draw.Event.CREATED, function (event) {
+    var layer = event.layer;
+    drawnItems.addLayer(layer);
+
+    var latlngs = layer.getLatLngs();
+    console.log("Drawn polygon coordinates:", latlngs);
+
+    // Optional: bind a popup to drawn polygon
+    layer.bindPopup(`
+      <b>Custom Polygon</b><br>
+      You drew this!<br>
+      <pre>${JSON.stringify(latlngs, null, 2)}</pre>
+    `);
+  });
 </script>
 </body>
 </html>
