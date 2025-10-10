@@ -37,17 +37,17 @@
 
   // Define a sample polygon (replace with your actual coordinates)
   var polygonCoords = [
-    [1.2965, 103.7755],
-    [1.2965, 103.7758],
-    [1.2970, 103.7758],
-    [1.2970, 103.7755]
+    [1.2965, 102.7755],
+    [1.2965, 102.7758],
+    [1.2970, 102.7758],
+    [1.2970, 102.7755]
   ];
 
   // Create the polygon layer with style
   var polygon = L.polygon(polygonCoords, {
     color: '##000000',
     fillColor: '#90EE90',
-    fillOpacity: 0.8,
+    fillOpacity: 0.5,
     weight: 2
   }).addTo(map);
 
@@ -64,7 +64,7 @@
 
   polygon.on('mouseout', function () {
     this.setStyle({
-      fillColor: '#3388ff'
+      fillColor: '#90EE90'
     });
     this.closePopup();
   });
