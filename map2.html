@@ -59,7 +59,10 @@
     weight: 2
   }).addTo(map);
 
-  polygon1.bindPopup(`<b>Central Library</b><br>A conducive place for relaxation and studying.<br><br>`<b>Stress Rating</b>: ★☆☆☆☆<br>`<b>Average time spent</b>: 5 hours/week`);
+  polygon1.bindPopup(
+  `<b>Central Library</b><br>A conducive place for relaxation and studying.<br><br>` +
+  `<b>Stress Rating</b>: ★☆☆☆☆<br><b>Average time spent</b>: 5 hours/week`
+);
 
   polygon1.on('mouseover', function () {
     this.setStyle({ fillColor: '#ff7800' });
@@ -89,7 +92,10 @@
     weight: 2
   }).addTo(map);
 
-  polygon2.bindPopup(`<b>Mochtar Riady Building</b><br>A glass building where lectures and tutorials are conducted.<br><br>`<b>Stress Rating</b>: ★★★★★<br>`<b>Average time spent</b>: 10 hours/week`);
+  polygon2.bindPopup(
+  `<b>Mochtar Riady Building</b><br>A glass building where lectures and tutorials are conducted.<br><br>` +
+  `<b>Stress Rating</b>: ★★★★★<br><b>Average time spent</b>: 10 hours/week`
+);
 
   polygon2.on('mouseover', function () {
     this.setStyle({ fillColor: '#0000FF' });
