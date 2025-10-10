@@ -27,31 +27,27 @@
 <!-- Leaflet JS -->
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <script>
-  // Initialize the map centered at some coordinates (adjust as needed)
+  
   var map = L.map('map').setView([1.2966, 103.7764], 16);
 
-  // Add OpenStreetMap tiles
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '© OpenStreetMap contributors'
   }).addTo(map);
 
-  // Define a sample polygon (replace with your actual coordinates)
   var polygonCoords = [
     [1.2965, 103.7735],
     [1.2965, 103.7738],
-    [1.2970, 103.7738],
-    [1.2970, 103.7735]
+    [1.2968, 103.7738],
+    [1.2968, 103.7735]
   ];
-
-  // Create the polygon layer with style
+  
   var polygon = L.polygon(polygonCoords, {
-    color: '##000000',
-    fillColor: '#90EE90',
+    color: '#0000FF', 
+    fillColor: '#ADD8E6', 
     fillOpacity: 0.5,
     weight: 2
   }).addTo(map);
-
-  // Add popup content
+  
   polygon.bindPopup(`
   <b>Central Library</b><br>
   <i>This is a relaxing place with air-conditioning for conducive studying.</i><br>
@@ -59,9 +55,6 @@
   Average Hours Spent: 5 hrs/week
 `);
 
-
-
-  // Change color on mouseover and reset on mouseout
   polygon.on('mouseover', function () {
     this.setStyle({
       fillColor: '#ff7800'
@@ -76,7 +69,6 @@
     this.closePopup();
   });
 
-  // Define coordinates for second polygon (example: somewhere nearby)
 var secondPolygonCoords = [
   [1.2960, 103.7745],
   [1.2960, 103.7748],
@@ -84,15 +76,13 @@ var secondPolygonCoords = [
   [1.2965, 103.7745]
 ];
 
-// Create the second polygon layer
 var secondPolygon = L.polygon(secondPolygonCoords, {
-  color: '#0000FF', // Border color
-  fillColor: '#ADD8E6', // Light blue
+  color: '#0000FF', 
+  fillColor: '#ADD8E6', 
   fillOpacity: 0.5,
   weight: 2
 }).addTo(map);
 
-// Add popup content for second polygon
 secondPolygon.bindPopup(`
   <b>Mochtar Riady Building B</b><br>
   <i>A glass building where lectures and tutorials are conducted.</i><br>
@@ -100,10 +90,9 @@ secondPolygon.bindPopup(`
   Average Hours Spent: 10 hrs/week
 `);
 
-// Hover interactions for second polygon
 secondPolygon.on('mouseover', function () {
   this.setStyle({
-    fillColor: '#0000FF' // Changes to a deeper blue on hover
+    fillColor: '#0000FF' 
   });
   this.openPopup();
 });
