@@ -54,7 +54,7 @@
   // Add popup content
   polygon.bindPopup(`
   <b>Central Library</b><br>
-  <i>This is a relaxing place with air-conditioning for conducive studying.</i><br><br>
+  <i>This is a relaxing place with air-conditioning for conducive studying.</i><br>
   Stress Rating: ★☆☆☆☆<br>
   Average Hours Spent: 5 hrs/week
 `);
@@ -76,6 +76,48 @@
     this.closePopup();
   });
 
+  // Define coordinates for second polygon (example: somewhere nearby)
+var secondPolygonCoords = [
+  [1.2960, 103.7745],
+  [1.2960, 103.7748],
+  [1.2965, 103.7748],
+  [1.2965, 103.7745]
+];
+
+// Create the second polygon layer
+var secondPolygon = L.polygon(secondPolygonCoords, {
+  color: '#0000FF', // Border color
+  fillColor: '#ADD8E6', // Light blue
+  fillOpacity: 0.5,
+  weight: 2
+}).addTo(map);
+
+// Add popup content for second polygon
+secondPolygon.bindPopup(`
+  <b>Mochtar Riady Building B</b><br>
+  <i>A glass building where lectures and tutorials are conducted.</i><br>
+  Stress Rating: ★★★★☆<br>
+  Average Hours Spent: 10 hrs/week
+`);
+
+// Hover interactions for second polygon
+secondPolygon.on('mouseover', function () {
+  this.setStyle({
+    fillColor: '#0000FF' // Changes to a deeper blue on hover
+  });
+  this.openPopup();
+});
+
+secondPolygon.on('mouseout', function () {
+  this.setStyle({
+    fillColor: '#ADD8E6'
+  });
+  this.closePopup();
+});
+
+
+
+  
 </script>
 </body>
 </html>
