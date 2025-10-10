@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Interactive Map with Hover Popups</title>
+
+  <!-- Leaflet CSS -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet/dist/leaflet.css"
+  />
+
+  <style>
+    /* Full page map */
+    html, body, #map {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+</head>
+<body>
+
+<div id="map"></div>
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script>
+  // Initialize the map centered at some coordinates (adjust as needed)
+  var map = L.map('map').setView([1.2966, 103.7764], 16);
+
+  // Add OpenStreetMap tiles
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap contributors'
+  }).addTo(map);
+
+  // Define a sample polygon (replace with your actual coordinates)
+  var polygonCoords = [
+    [1.2968, 103.7755],
+    [1.2968, 103.7758],
+    [1.2970, 103.7758],
+    [1.2970, 103.7755]
+  ];
+
+  // Create the polygon layer with style
+  var polygon = L.polygon(polygonCoords, {
+    color: '#3388ff',
+    fillColor: '#3388ff',
+    fillOpacity: 0.5,
+    weight: 2
+  }).addTo(map);
+
+  // Add popup content
+  polygon.bindPopup("<b>Sample Building</b><br>This is a sample area.");
+
+  // Change color on mouseover and reset on mouseout
+  polygon.on('mouseover', function () {
+    this.setStyle({
+      fillColor: '#ff7800'
+    });
+    this.openPopup();
+  });
+
+  polygon.on('mouseout', function () {
+    this.setStyle({
+      fillColor: '#3388ff'
+    });
+    this.closePopup();
+  });
+
+</script>
+</body>
+</html>
