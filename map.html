@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Interactive Overlay Page</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #f0f0f0;
+    }
+
+    .container {
+      position: relative;
+      width: 100%;
+      max-width: 800px;
+      margin: 50px auto;
+      background: #fff;
+      border: 1px solid #ccc;
+      padding: 20px;
+    }
+
+    .overlay-button {
+      position: absolute;
+      padding: 10px 15px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .overlay-button:hover {
+      background-color: #0056b3;
+    }
+
+    /* Example hover info box */
+    .hover-info {
+      position: absolute;
+      display: none;
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 8px;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    .overlay-button:hover + .hover-info {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>My Interactive Page</h2>
+
+    <!-- Overlay Button -->
+    <div style="position: relative; height: 200px;">
+      <button class="overlay-button" style="top: 50px; left: 100px;">Click Me</button>
+      <div class="hover-info" style="top: 90px; left: 100px;">This is a tooltip on hover!</div>
+    </div>
+  </div>
+</body>
+</html>
