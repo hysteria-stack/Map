@@ -3,11 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Interactive Map with Draw & Hover Popups</title>
+  <title>Interactive Map with Draw + Clipboard</title>
 
   <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-  <!-- Leaflet Draw CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet-draw/dist/leaflet.draw.css" />
 
   <style>
@@ -16,141 +15,152 @@
       margin: 0;
       padding: 0;
     }
+
+    #copy-notice {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #4caf50;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-family: sans-serif;
+      display: none;
+      z-index: 1000;
+    }
   </style>
 </head>
 <body>
 
+<div id="copy-notice">Coordinates copied to clipboard!</div>
 <div id="map"></div>
 
-<!-- Leaflet JS -->
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-<!-- Leaflet Draw JS -->
 <script src="https://unpkg.com/leaflet-draw/dist/leaflet.draw.js"></script>
 
 <script>
-  // Initialize the map
   var map = L.map('map').setView([1.2966, 103.7764], 16);
 
-  // Add OpenStreetMap tiles
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '© OpenStreetMap contributors'
   }).addTo(map);
 
-  // === Predefined Polygon: Central Library ===
-  var polygonCoords = [
+  // Central Library
+  var polygon1 = L.polygon([
     [1.297225707113247, 103.77373337745668],
     [1.2971345616083245, 103.7740069627762],
     [1.2966091345158954, 103.77384066581727],
     [1.296711003042346, 103.77354025840759]
-  ];
-
-  var polygon = L.polygon(polygonCoords, {
+  ], {
     color: '#0000FF',
     fillColor: '#ADD8E6',
     fillOpacity: 0.5,
     weight: 2
   }).addTo(map);
 
-  polygon.bindPopup(`
-    <b>Central Library</b><br>
-    <i>This is a relaxing place with air-conditioning for conducive studying.</i><br>
-    Stress Rating: ★☆☆☆☆<br>
-    Average Hours Spent: 5 hrs/week
-  `);
+  polygon1.bindPopup(`<b>Central Library</b><br>Stress Rating: ★☆☆☆☆`);
 
-  polygon.on('mouseover', function () {
+  polygon1.on('mouseover', function () {
     this.setStyle({ fillColor: '#ff7800' });
     this.openPopup();
   });
 
-  polygon.on('mouseout', function () {
+  polygon1.on('mouseout', function () {
     this.setStyle({ fillColor: '#ADD8E6' });
     this.closePopup();
   });
 
-  // === Second Polygon: Mochtar Riady Building ===
-  var secondPolygonCoords = [
+  //Mochtar Riady Building
+  var polygon2 = L.polygon([
     [1.2960, 103.7745],
     [1.2960, 103.7748],
     [1.2965, 103.7748],
     [1.2965, 103.7745]
-  ];
-
-  var secondPolygon = L.polygon(secondPolygonCoords, {
+  ], {
     color: '#0000FF',
     fillColor: '#ADD8E6',
     fillOpacity: 0.5,
     weight: 2
   }).addTo(map);
 
-  secondPolygon.bindPopup(`
-    <b>Mochtar Riady Building</b><br>
-    <i>A glass building where lectures and tutorials are conducted.</i><br>
-    Stress Rating: ★★★★☆<br>
-    Average Hours Spent: 10 hrs/week
-  `);
+  polygon2.bindPopup(`<b>Mochtar Riady Building</b><br>Stress Rating: ★★★★☆`);
 
-  secondPolygon.on('mouseover', function () {
+  polygon2.on('mouseover', function () {
     this.setStyle({ fillColor: '#0000FF' });
     this.openPopup();
   });
 
-  secondPolygon.on('mouseout', function () {
+  polygon2.on('mouseout', function () {
     this.setStyle({ fillColor: '#ADD8E6' });
     this.closePopup();
   });
 
-  // === Leaflet Draw Setup ===
-  // Create a layer group to store drawn items
+  // Leaflet Draw Setup
   var drawnItems = new L.FeatureGroup();
   map.addLayer(drawnItems);
 
-  // Add drawing controls to the map
   var drawControl = new L.Control.Draw({
     draw: {
-      polyline: false,
-      rectangle: false,
-      circle: false,
-      marker: false,
-      circlemarker: false,
       polygon: {
         allowIntersection: false,
         showArea: true,
-        drawError: {
-          color: '#e1e100',
-          message: '<strong>Error:</strong> You can’t draw that!'
-        },
         shapeOptions: {
           color: '#FF0000',
           fillColor: '#FFA07A',
           fillOpacity: 0.5
         }
-      }
+      },
+      polyline: false,
+      rectangle: false,
+      circle: false,
+      marker: false,
+      circlemarker: false
     },
     edit: {
-      featureGroup: drawnItems,
-      edit: true,
-      remove: true
+      featureGroup: drawnItems
     }
   });
-
   map.addControl(drawControl);
 
-  // Handle created polygons
+  // Handle drawing completion
   map.on(L.Draw.Event.CREATED, function (event) {
     var layer = event.layer;
     drawnItems.addLayer(layer);
 
-    var latlngs = layer.getLatLngs();
-    console.log("Drawn polygon coordinates:", latlngs);
+    var latlngs = layer.getLatLngs()[0]; // Outer ring of polygon
 
-    // Optional: bind a popup to drawn polygon
-    layer.bindPopup(`
-      <b>Custom Polygon</b><br>
-      You drew this!<br>
-      <pre>${JSON.stringify(latlngs, null, 2)}</pre>
-    `);
+    // Format coordinates as [lat, lng]
+    var formattedCoords = latlngs.map(function(latlng) {
+      return `[${latlng.lat}, ${latlng.lng}]`;
+    });
+
+    var result = `[\n  ${formattedCoords.join(',\n  ')}\n]`;
+
+    // Copy to clipboard
+    copyToClipboard(result);
+
+    // Optional: log to console
+    console.log("Copied Polygon Coordinates:\n", result);
   });
+
+  // Clipboard copy function
+  function copyToClipboard(text) {
+    navigator.clipboard.writeText(text).then(function () {
+      showNotice();
+    }).catch(function (err) {
+      alert('Failed to copy coordinates: ' + err);
+    });
+  }
+
+  // Visual confirmation
+  function showNotice() {
+    var notice = document.getElementById('copy-notice');
+    notice.style.display = 'block';
+    setTimeout(() => {
+      notice.style.display = 'none';
+    }, 2000);
+  }
 </script>
 </body>
 </html>
