@@ -59,7 +59,7 @@
     weight: 2
   }).addTo(map);
 
-  polygon1.bindPopup(`<b>Central Library</b><br>A conducive place for relaxation and studying.<br>Stress Rating: ★☆☆☆☆`<br>Average hours spent: 5 hours/week);
+  polygon1.bindPopup(`<b>Central Library</b><br>A conducive place for relaxation and studying.<br>Stress Rating: ★☆☆☆☆<br>Average hours spent: 5 hours/week`);
 
   polygon1.on('mouseover', function () {
     this.setStyle({ fillColor: '#ff7800' });
@@ -67,13 +67,12 @@
   });
 
   polygon1.on('mouseout', function () {
-    this.setStyle({ fillColor: '#ADD8E6' });
+    this.setStyle({ fillColor: '#008000' });
     this.closePopup();
   });
 
-  //Mochtar Riady Building
+  // Mochtar Riady Building
   var polygon2 = L.polygon([
-  [
     [1.2926406682847937, 103.77376019954683],
     [1.2927318139513266, 103.77394258975984],
     [1.2926621143242878, 103.77417325973512],
@@ -83,7 +82,6 @@
     [1.2923618697551127, 103.77413570880891],
     [1.2923404237131124, 103.77404987812042],
     [1.2924959075135973, 103.7738084793091]
-  ]
   ], {
     color: '#000000',
     fillColor: '#F54927',
@@ -91,7 +89,7 @@
     weight: 2
   }).addTo(map);
 
-  polygon2.bindPopup(`<b>Mochtar Riady Building</b><br>A glass building where lectures and tutorials are conducted.<br>Stress Rating: ★★★★☆`<br>Average hours spent: 10 hours/week);
+  polygon2.bindPopup(`<b>Mochtar Riady Building</b><br>A glass building where lectures and tutorials are conducted.<br>Stress Rating: ★★★★☆<br>Average hours spent: 10 hours/week`);
 
   polygon2.on('mouseover', function () {
     this.setStyle({ fillColor: '#0000FF' });
@@ -99,7 +97,7 @@
   });
 
   polygon2.on('mouseout', function () {
-    this.setStyle({ fillColor: '#ADD8E6' });
+    this.setStyle({ fillColor: '#F54927' });
     this.closePopup();
   });
 
@@ -135,23 +133,18 @@
     var layer = event.layer;
     drawnItems.addLayer(layer);
 
-    var latlngs = layer.getLatLngs()[0]; // Outer ring of polygon
+    var latlngs = layer.getLatLngs()[0];
 
-    // Format coordinates as [lat, lng]
     var formattedCoords = latlngs.map(function(latlng) {
       return `[${latlng.lat}, ${latlng.lng}]`;
     });
 
     var result = `[\n  ${formattedCoords.join(',\n  ')}\n]`;
 
-    // Copy to clipboard
     copyToClipboard(result);
-
-    // Optional: log to console
     console.log("Copied Polygon Coordinates:\n", result);
   });
 
-  // Clipboard copy function
   function copyToClipboard(text) {
     navigator.clipboard.writeText(text).then(function () {
       showNotice();
@@ -160,7 +153,6 @@
     });
   }
 
-  // Visual confirmation
   function showNotice() {
     var notice = document.getElementById('copy-notice');
     notice.style.display = 'block';
