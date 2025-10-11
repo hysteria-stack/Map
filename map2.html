@@ -17,19 +17,28 @@
     }
 
     #copy-notice {
-      position: absolute;
-      top: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      background-color: #4caf50;
-      color: white;
-      padding: 8px 16px;
-      border-radius: 4px;
-      font-family: sans-serif;
-      display: none;
-      z-index: 1000;
-    }
-  </style>
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #4caf50;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-family: sans-serif;
+    display: none;
+    z-index: 1000;
+  }
+  .leaflet-div-icon {
+    width: 6px !important;
+    height: 6px !important;
+    margin-left: -3px !important;
+    margin-top: -3px !important;
+    border-radius: 2px !important;
+    border: 1px solid #000;
+    background: #fff;
+  }
+</style>
 </head>
 <body>
 
@@ -128,9 +137,6 @@
       marker: false,
       circlemarker: false
     },
-    edit: {
-      featureGroup: drawnItems
-    }
   });
   map.addControl(drawControl);
 
