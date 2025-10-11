@@ -193,7 +193,43 @@
     this.setStyle({ fillColor: '#008000' });
     this.closePopup();
   });
+  // Shaw Foundation Building
+  var polygon4 = L.polygon([ 
+    [1.2944526836252725, 103.77205893641414], 
+    [1.2942864290996847, 103.77168888806838], 
+    [1.2939914613661614, 103.7715869906978], 
+    [1.2940021874661738, 103.77154408654175], 
+    [1.2939271047652217, 103.77151190842476], 
+    [1.2938627481626281, 103.77168888806838], 
+    [1.294179168109649, 103.77181223751695], 
+    [1.29420062030802, 103.77185514167299], 
+    [1.2940719071150844, 103.77181223751695], 
+    [1.2940182766160908, 103.7719677650826], 
+    [1.2940611810153773, 103.77206966245313], 
+    [1.2942274355557228, 103.77211792962869], 
+    [1.29427033995146, 103.77199994319959], 
+    [1.294334696543723, 103.77211256660918] 
+    ], {
+    color: '#000000',
+    fillColor: '#FFA500',
+    fillOpacity: 0.5,
+    weight: 2
+  }).addTo(map);
 
+  polygon4.bindPopup(
+  `<b>Central Library</b><br>A conducive place for relaxation and studying.<br><br>` +
+  `<b>Stress Rating</b>: ★☆☆☆☆<br><b>Average time spent</b>: 5 hours/week`
+);
+
+  polygon4.on('mouseover', function () {
+    this.setStyle({ fillColor: '#ff7800' });
+    this.openPopup();
+  });
+
+  polygon4.on('mouseout', function () {
+    this.setStyle({ fillColor: '#008000' });
+    this.closePopup();
+  });
 
   // Leaflet Draw Setup
   var drawnItems = new L.FeatureGroup();
