@@ -337,7 +337,44 @@
     this.closePopup();
   });
 
+  var polygon7 = L.polygon([
+  [1.2992847861974202, 103.77618951312864],
+  [1.2991292580674962, 103.77613587942287],
+  [1.29906490159715, 103.77626996368721],
+  [1.2989951820857542, 103.77624851020497],
+  [1.2989415516910703, 103.77633968750466],
+  [1.2990112712039419, 103.77636650435755],
+  [1.298973729928018, 103.77647913513957],
+  [1.2988771952159277, 103.776436228175],
+  [1.2988128387391695, 103.77663467288623],
+  [1.299048812479306, 103.77670976007423],
+  [1.2991614363020652, 103.77643086480441],
+  [1.2992847861974202, 103.77646304502787],
+  [1.2992955122749905, 103.77636650435755],
+  [1.2992311558088683, 103.77633432413411]
+  ], {
+    color: '#000000',
+    fillColor: '#2cff05',
+    fillOpacity: 0.5,
+    weight: 2
+  }).addTo(map);
 
+  polygon7.bindPopup(
+    `<b>University Health Centre</b><br>
+     Place to visit when falling sick 🙁 Most of the time caused by stress. Also, visiting UHC means missing class, stressed<br><br>
+     <b>Stress Rating</b>: 3.00/5.00⭐<br>
+     <b>Average time spent</b>: 5 hours/week`
+  );
+
+  polygon7.on('mouseover', function () {
+    this.setStyle({ fillColor: '#ff7800' });
+    this.openPopup();
+  });
+
+  polygon7.on('mouseout', function () {
+    this.setStyle({ fillColor: '#2cff05' });
+    this.closePopup();
+  });
 
 
 
