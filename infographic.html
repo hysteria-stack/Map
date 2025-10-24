@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Map Infographic</title>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <style>
+    html, body, #map {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    .infobox {
+      background-color: white;
+      border: 2px solid #333;
+      padding: 6px 10px;
+      border-radius: 4px;
+      font-family: sans-serif;
+      font-size: 14px;
+      box-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+      white-space: pre-line; /* preserve newlines */
+    }
+  </style>
+</head>
+<body>
+<div id="map"></div>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script>
+  // Read polygons from localStorage
+  const polygonsData = JSON.parse(localStorage.getItem('infographicPolygons') || '[]');
+
+  var map = L.map('map').setView([1.2966, 103.7764], 16);
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap contributors'
+  }).addTo(map);
+
+  polygonsData.forEach(p => {
+    var poly = L.polygon(p.coords, {
+      color: '#000000',
+      fillColor: p.color,
+      fillOpacity: 0.5,
+      weight: 2
+    }).addTo(map);
+
+    // Add static label at polygon center
+    var center = poly.getBounds().getCenter();
+    L.marker(center, {
+      icon: L.divIcon({
+        className: 'infobox',
+        html: p.label,
+        iconSize: [120, 50]
+      })
+    }).addTo(map);
+  });
+</script>
+</body>
+</html>
