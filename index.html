@@ -235,6 +235,67 @@
     this.setStyle({ fillColor: '#F54927' });
     this.closePopup();
   });
+    // Leaflet Draw Setup
+  var drawnItems = new L.FeatureGroup();
+  map.addLayer(drawnItems);
+
+var drawControl = new L.Control.Draw({
+  draw: {
+    polygon: {
+      allowIntersection: false,
+      showArea: true,
+      shapeOptions: {
+        color: '#FF0000',
+        fillColor: '#FFA07A',
+        fillOpacity: 0.5
+      }
+    },
+    polyline: false,
+    rectangle: false,
+    circle: false,
+    marker: false,
+    circlemarker: false
+  },
+  edit: false 
+});
+
+  map.addControl(drawControl);
+
+  // Handle drawing completion
+  map.on(L.Draw.Event.CREATED, function (event) {
+    var layer = event.layer;
+    drawnItems.addLayer(layer);
+
+    var latlngs = layer.getLatLngs()[0];
+
+    var formattedCoords = latlngs.map(function(latlng) {
+      return `[${latlng.lat}, ${latlng.lng}]`;
+    });
+
+    var result = `[\n  ${formattedCoords.join(',\n  ')}\n]`;
+
+    copyToClipboard(result);
+    console.log("Copied Polygon Coordinates:\n", result);
+  });
+
+  function copyToClipboard(text) {
+    navigator.clipboard.writeText(text).then(function () {
+      showNotice();
+    }).catch(function (err) {
+      alert('Failed to copy coordinates: ' + err);
+    });
+  }
+
+  function showNotice() {
+    var notice = document.getElementById('copy-notice');
+    notice.style.display = 'block';
+    setTimeout(() => {
+      notice.style.display = 'none';
+    }, 2000);
+  }
+</script>
+</body>
+</html>
 
 </script>
 </body>
