@@ -41,6 +41,7 @@
 </style>
 </head>
 <body>
+<button id="view-infographic" style="position:absolute; top:10px; right:10px; z-index:1000; padding:10px;">View Infographic</button>
 
 <div id="copy-notice">Coordinates copied to clipboard!</div>
 <div id="map"></div>
@@ -292,6 +293,39 @@ var drawControl = new L.Control.Draw({
       notice.style.display = 'none';
     }, 2000);
   }
+
+document.getElementById('view-infographic').addEventListener('click', function() {
+  // Collect polygon info
+  var polygonsInfo = [
+    {
+      coords: polygon1.getLatLngs()[0],
+      color: '#2cff05',
+      label: 'Central Library\nStress: ★☆☆☆☆\n5 hrs/week'
+    },
+    {
+      coords: polygon2.getLatLngs()[0],
+      color: '#F54927',
+      label: 'Mochtar Riady Building\nStress: ★★★★★\n10 hrs/week'
+    },
+    {
+      coords: polygon3.getLatLngs()[0],
+      color: '#2cff05',
+      label: 'The Deck\nStress: ★☆☆☆☆\n2 hrs/week'
+    },
+    {
+      coords: polygon4.getLatLngs()[0],
+      color: '#FFFF00',
+      label: 'Shaw Foundation Building\nStress: ★★☆☆☆\n2 hrs/week'
+    }
+  ];
+
+  // Save to localStorage
+  localStorage.setItem('infographicPolygons', JSON.stringify(polygonsInfo));
+
+  // Open new window
+  window.open('infographic.html', '_blank');
+});
+
 </script>
 </body>
 </html>
