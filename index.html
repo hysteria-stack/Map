@@ -14,74 +14,34 @@
       height: 100%;
       margin: 0;
       padding: 0;
-      font-family: Arial, sans-serif;
     }
 
     #copy-notice {
-      position: absolute;
-      top: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      background-color: #4caf50;
-      color: white;
-      padding: 8px 16px;
-      border-radius: 4px;
-      font-family: sans-serif;
-      display: none;
-      z-index: 1000;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-    }
-
-    #view-infographic {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      z-index: 1000;
-      padding: 10px 15px;
-      border: none;
-      border-radius: 6px;
-      background-color: #2196f3;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    #view-infographic:hover {
-      background-color: #1976d2;
-      transform: translateY(-2px);
-    }
-
-    .leaflet-div-icon {
-      width: 3px !important;
-      height: 3px !important;
-      margin-left: -2px !important;
-      margin-top: -2px !important;
-      border-radius: 2px !important;
-      border: 1px solid #000;
-      background: #fff;
-    }
-
-    .custom-popup {
-      border-radius: 10px;
-      padding: 10px;
-      box-shadow: 3px 3px 10px rgba(0,0,0,0.3);
-      font-size: 14px;
-      line-height: 1.3;
-      min-width: 200px;
-    }
-
-    .stars {
-      font-size: 14px;
-    }
-
-    .stars span {
-      color: gold;
-    }
-  </style>
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #4caf50;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-family: sans-serif;
+    display: none;
+    z-index: 1000;
+  }
+  .leaflet-div-icon {
+    width: 3px !important;
+    height: 3px !important;
+    margin-left: -2px !important;
+    margin-top: -2px !important;
+    border-radius: 2px !important;
+    border: 1px solid #000;
+    background: #fff;
+  }
+</style>
 </head>
 <body>
-<button id="view-infographic">View Infographic</button>
+
 <div id="copy-notice">Coordinates copied to clipboard!</div>
 <div id="map"></div>
 
@@ -89,114 +49,249 @@
 <script src="https://unpkg.com/leaflet-draw/dist/leaflet.draw.js"></script>
 
 <script>
-  // Initialize map
   var map = L.map('map').setView([1.2966, 103.7764], 16);
 
-  // Nice light tiles
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-    attribution: '&copy; OpenStreetMap &copy; CARTO',
-    subdomains: 'abcd',
-    maxZoom: 19
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap contributors'
   }).addTo(map);
 
-  // Function to generate colored stars
-  function generateStars(rating) {
-    let fullStars = '★'.repeat(rating);
-    let emptyStars = '☆'.repeat(5 - rating);
-    return `<span class="stars" style="color:${rating <= 2 ? 'green' : rating===3?'orange':'red'};">${fullStars}</span>${emptyStars}`;
-  }
+  // Central Library
+  var polygon1 = L.polygon([
+  [1.2970537610730943, 103.77367373113053],
+  [1.2972307415033832, 103.77373808736458],
+  [1.297139569768121, 103.77399551230079],
+  [1.2970323088988829, 103.77395797116424],
+  [1.297016219768113, 103.77399014928127],
+  [1.2966086284209712, 103.77383998473516],
+  [1.2967266153966337, 103.77352356658444],
+  [1.2966783479981665, 103.77351284054542],
+  [1.296705163219649, 103.77344312129186],
+  [1.2966247175543364, 103.77341630619435],
+  [1.2966086284209712, 103.77347529940891],
+  [1.2964638262160655, 103.77341630619435],
+  [1.2964799153503597, 103.77328223070677],
+  [1.2960347825973366, 103.77312670314112],
+  [1.2961956739628837, 103.77267084648332],
+  [1.2966568958207743, 103.77283173706846],
+  [1.2966354436432042, 103.77290145632199],
+  [1.296694437131099, 103.7729175453805],
+  [1.2966890740867925, 103.77294972349752],
+  [1.2966408066876127, 103.772933634439],
+  [1.2966461697320084, 103.77296044953653],
+  [1.2968124241027414, 103.77304089482908],
+  [1.2968231501908078, 103.77300335369254],
+  [1.2967427045292483, 103.77297653859502],
+  [1.2967909719264816, 103.77285855216597],
+  [1.2969894045499128, 103.77292827141949],
+  [1.296967952375167, 103.77300871671206],
+  [1.297107391507828, 103.7730623469071],
+  [1.2970859393340743, 103.77313206616063],
+  [1.297209289330673, 103.77318569635568],
+  [1.297182474114534, 103.77328223070677],
+  [1.2972146523738728, 103.77329831976529],
+  [1.2971985632442606, 103.77335194996029],
+  [1.2972253784602343, 103.77336803901882],
+  [1.2971502958547878, 103.77358792281846],
+  [1.2970913023775286, 103.77357183375999]
+  ], {
+    color: '#000000',
+    fillColor: '#2cff05',
+    fillOpacity: 0.5,
+    weight: 2
+  }).addTo(map);
 
-  // Polygon definitions
-  var polygons = [
-    {
-      coords: [
-        [1.2970537610730943, 103.77367373113053],
-        [1.2972307415033832, 103.77373808736458],
-        [1.297139569768121, 103.77399551230079],
-        [1.2970323088988829, 103.77395797116424],
-        [1.2970913023775286, 103.77357183375999]
-      ],
-      color: '#2cff05',
-      label: `<b>Central Library</b><br>A conducive place for relaxation and studying.<br><b>Stress Rating:</b> ${generateStars(1)}<br><b>Avg time spent:</b> 5 hrs/week<br><img src="images/central-library.jpg" style="width:200px;border-radius:8px;">`,
-      hoverColor: '#ff7800'
-    },
-    {
-      coords: [
-        [1.2926406682847937, 103.77376019954683],
-        [1.2927318139513266, 103.77394258975984],
-        [1.2926621143242878, 103.77417325973512],
-        [1.2925709686552487, 103.77443075180055],
-        [1.2924959075135973, 103.7738084793091]
-      ],
-      color: '#F54927',
-      label: `<b>Mochtar Riady Building</b><br>A glass building where lectures and tutorials are conducted.<br><b>Stress Rating:</b> ${generateStars(5)}<br><b>Avg time spent:</b> 10 hrs/week`,
-      hoverColor: '#0000FF'
-    }
-  ];
+polygon1.bindPopup(
+  `<b>Central Library</b><br>
+   A conducive place for relaxation and studying.<br><br>
+   <b>Stress Rating</b>: ★☆☆☆☆<br>
+   <b>Average time spent</b>: 5 hours/week<br><br>
+   <img src="images/central-library.jpg" alt="Central Library" style="width: 200px; border-radius: 8px;" />`
+);
 
-  polygons.forEach(p => {
-    let poly = L.polygon(p.coords, {color:'#000', fillColor:p.color, fillOpacity:0.6, weight:2}).addTo(map);
-    poly.bindPopup(`<div class="custom-popup">${p.label}</div>`);
-
-    poly.on('mouseover', function(){
-      this.setStyle({fillColor:p.hoverColor, weight:3});
-      this.openPopup();
-    });
-
-    poly.on('mouseout', function(){
-      this.setStyle({fillColor:p.color, weight:2});
-      this.closePopup();
-    });
+  polygon1.on('mouseover', function () {
+    this.setStyle({ fillColor: '#ff7800' });
+    this.openPopup();
   });
 
-  // Leaflet Draw setup
+  polygon1.on('mouseout', function () {
+    this.setStyle({ fillColor: '#2cff05' });
+    this.closePopup();
+  });
+  
+  // Mochtar Riady Building
+  var polygon2 = L.polygon([
+    [1.2926406682847937, 103.77376019954683],
+    [1.2927318139513266, 103.77394258975984],
+    [1.2926621143242878, 103.77417325973512],
+    [1.2925709686552487, 103.77443075180055],
+    [1.2923297006920422, 103.77452731132509],
+    [1.2922760855859792, 103.77439320087433],
+    [1.2923618697551127, 103.77413570880891],
+    [1.2923404237131124, 103.77404987812042],
+    [1.2924959075135973, 103.7738084793091]
+  ], {
+    color: '#000000',
+    fillColor: '#F54927',
+    fillOpacity: 0.5,
+    weight: 2
+  }).addTo(map);
+
+  polygon2.bindPopup(
+  `<b>Mochtar Riady Building</b><br>A glass building where lectures and tutorials are conducted.<br><br>` +
+  `<b>Stress Rating</b>: ★★★★★<br><b>Average time spent</b>: 10 hours/week`
+);
+
+  polygon2.on('mouseover', function () {
+    this.setStyle({ fillColor: '#0000FF' });
+    this.openPopup();
+  });
+
+  polygon2.on('mouseout', function () {
+    this.setStyle({ fillColor: '#F54927' });
+    this.closePopup();
+  });
+  
+  // The Deck
+  var polygon3 = L.polygon([
+  [1.2948441861747249, 103.77265985332583],
+  [1.2948763644637828, 103.7727188465404],
+  [1.2947959187403935, 103.77277247673544],
+  [1.2947422882567174, 103.77268130540386],
+  [1.2946403903346138, 103.77267057936486],
+  [1.2945921228963895, 103.77262231218933],
+  [1.2945224032617915, 103.77269203144289],
+  [1.2944580466743119, 103.77263840124785],
+  [1.2944205053308457, 103.7725740450138],
+  [1.294399053134345, 103.7724292434872],
+  [1.2945331293595521, 103.77219863364853],
+  [1.2946350272859688, 103.77228444196058],
+  [1.2946993838689702, 103.77225761147929],
+  [1.294645753383246, 103.77216107712822],
+  [1.2946028489938575, 103.77218252920622],
+  [1.2945116771639928, 103.7721181729722],
+  [1.2945545815549335, 103.77210208391367],
+  [1.2945331293595521, 103.77204309069913],
+  [1.2947315621598474, 103.77194119332853],
+  [1.2947851926437397, 103.7720323646601],
+  [1.2947691034986955, 103.77204845371863],
+  [1.2949514471366317, 103.77247749527896]
+], {
+    color: '#000000',
+    fillColor: '#2cff05',
+    fillOpacity: 0.5,
+    weight: 2
+  }).addTo(map);
+
+  polygon3.bindPopup(
+  `<b>The Deck</b><br> A nice food hotspot!<br><br>` +
+  `<b>Stress Rating</b>: ★☆☆☆☆<br><b>Average time spent</b>: 2 hours/week`
+);
+
+  polygon3.on('mouseover', function () {
+    this.setStyle({ fillColor: '#ff7800' });
+    this.openPopup();
+  });
+
+  polygon3.on('mouseout', function () {
+    this.setStyle({ fillColor: '#2cff05' });
+    this.closePopup();
+  });
+  // Shaw Foundation Building
+  var polygon4 = L.polygon([ 
+    [1.2944526836252725, 103.77205893641414], 
+    [1.2942864290996847, 103.77168888806838], 
+    [1.2939914613661614, 103.7715869906978], 
+    [1.2940021874661738, 103.77154408654175], 
+    [1.2939271047652217, 103.77151190842476], 
+    [1.2938627481626281, 103.77168888806838], 
+    [1.294179168109649, 103.77181223751695], 
+    [1.29420062030802, 103.77185514167299], 
+    [1.2940719071150844, 103.77181223751695], 
+    [1.2940182766160908, 103.7719677650826], 
+    [1.2940611810153773, 103.77206966245313], 
+    [1.2942274355557228, 103.77211792962869], 
+    [1.29427033995146, 103.77199994319959], 
+    [1.294334696543723, 103.77211256660918] 
+    ], {
+    color: '#000000',
+    fillColor: '#FFFF00',
+    fillOpacity: 0.5,
+    weight: 2
+  }).addTo(map);
+
+  polygon4.bindPopup(
+  `<b>Shaw Foundation Building</b><br>Where we have our weekly GEX1003 classes!.<br><br>` +
+  `<b>Stress Rating</b>: ★★☆☆☆<br><b>Average time spent</b>: 2 hours/week`
+);
+
+  polygon4.on('mouseover', function () {
+    this.setStyle({ fillColor: '#ff7800' });
+    this.openPopup();
+  });
+
+  polygon4.on('mouseout', function () {
+    this.setStyle({ fillColor: '#FFFF00' });
+    this.closePopup();
+  });
+
+  // Leaflet Draw Setup
   var drawnItems = new L.FeatureGroup();
   map.addLayer(drawnItems);
 
-  var drawControl = new L.Control.Draw({
-    draw: {
-      polygon: {
-        allowIntersection: false,
-        showArea: true,
-        shapeOptions: {
-          color: '#FF0000',
-          fillColor: '#FFA07A',
-          fillOpacity: 0.5
-        }
-      },
-      polyline: false, rectangle:false, circle:false, marker:false, circlemarker:false
+var drawControl = new L.Control.Draw({
+  draw: {
+    polygon: {
+      allowIntersection: false,
+      showArea: true,
+      shapeOptions: {
+        color: '#FF0000',
+        fillColor: '#FFA07A',
+        fillOpacity: 0.5
+      }
     },
-    edit: false
-  });
+    polyline: false,
+    rectangle: false,
+    circle: false,
+    marker: false,
+    circlemarker: false
+  },
+  edit: false 
+});
+
   map.addControl(drawControl);
 
-  map.on(L.Draw.Event.CREATED, function(event){
+  // Handle drawing completion
+  map.on(L.Draw.Event.CREATED, function (event) {
     var layer = event.layer;
     drawnItems.addLayer(layer);
 
     var latlngs = layer.getLatLngs()[0];
-    var formattedCoords = latlngs.map(ll => `[${ll.lat.toFixed(6)}, ${ll.lng.toFixed(6)}]`);
+
+    var formattedCoords = latlngs.map(function(latlng) {
+      return `[${latlng.lat}, ${latlng.lng}]`;
+    });
+
     var result = `[\n  ${formattedCoords.join(',\n  ')}\n]`;
 
     copyToClipboard(result);
-    alert('Polygon drawn! Coordinates copied to clipboard.');
+    console.log("Copied Polygon Coordinates:\n", result);
   });
 
-  function copyToClipboard(text){
-    navigator.clipboard.writeText(text).then(()=>{showNotice();})
-    .catch(err=>alert('Failed to copy: '+err));
+  function copyToClipboard(text) {
+    navigator.clipboard.writeText(text).then(function () {
+      showNotice();
+    }).catch(function (err) {
+      alert('Failed to copy coordinates: ' + err);
+    });
   }
 
-  function showNotice(){
+  function showNotice() {
     var notice = document.getElementById('copy-notice');
-    notice.style.display='block';
-    setTimeout(()=>notice.style.display='none',2000);
+    notice.style.display = 'block';
+    setTimeout(() => {
+      notice.style.display = 'none';
+    }, 2000);
   }
-
-  document.getElementById('view-infographic').addEventListener('click', ()=>{
-    localStorage.setItem('infographicPolygons', JSON.stringify(polygons));
-    window.open('infographic.html','_blank');
-  });
 </script>
 </body>
 </html>
