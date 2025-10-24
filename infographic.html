@@ -16,13 +16,13 @@
   .infobox {
     background-color: white;
     border: 2px solid #333;
-    padding: 12px 20px; /* bigger padding */
-    border-radius: 8px; /* rounder corners */
+    padding: 20px 30px;        /* much bigger padding */
+    border-radius: 12px;       /* rounder corners */
     font-family: sans-serif;
-    font-size: 16px; /* larger text */
-    box-shadow: 3px 3px 10px rgba(0,0,0,0.3);
-    white-space: pre-line; /* preserve newlines */
-    max-width: 300px; /* allow wrapping */
+    font-size: 20px;           /* bigger text */
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.4);
+    white-space: pre-line;     /* preserve line breaks */
+    max-width: 400px;          /* wider box */
     text-align: center;
   }
 </style>
@@ -49,13 +49,13 @@
       weight: 2
     }).addTo(map);
 
-    // Add static label at polygon center
+    // Add large static label at polygon center
     var center = poly.getBounds().getCenter();
     L.marker(center, {
       icon: L.divIcon({
         className: 'infobox',
         html: p.label,
-        iconSize: [120, 50]
+        iconSize: null // Let CSS handle size
       })
     }).addTo(map);
   });
