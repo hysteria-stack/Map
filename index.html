@@ -514,6 +514,40 @@
     this.setStyle({ fillColor: COLOR_YELLOW});
     this.closePopup();
   });
+
+//UTown
+  var polygon11 = L.polygon([
+    [1.2926406682847937, 103.77376019954683],
+    [1.2927318139513266, 103.77394258975984],
+    [1.2926621143242878, 103.77417325973512],
+    [1.2925709686552487, 103.77443075180055],
+    [1.2923297006920422, 103.77452731132509],
+    [1.2922760855859792, 103.77439320087433],
+    [1.2923618697551127, 103.77413570880891],
+    [1.2923404237131124, 103.77404987812042],
+    [1.2924959075135973, 103.7738084793091]
+  ], {
+    color: '#000000',
+    fillColor: COLOR_RED,
+    fillOpacity: 0.5,
+    weight: 2
+  }).addTo(map);
+
+  polygon11.bindPopup(
+    `<b>UTown</b><br><br><br>
+     <b>Stress Rating:</b><br> ${generateStressBar(5, 5)}<br>
+     <b>Average Time Spent</b>: X hours/week`
+  );
+
+  polygon11.on('mouseover', function () {
+    this.setStyle({ fillColor: COLOR_MOUSEOVER});
+    this.openPopup();
+  });
+
+  polygon11.on('mouseout', function () {
+    this.setStyle({ fillColor: COLOR_RED});
+    this.closePopup();
+  });
   
   //Business Image
     var businessIcon = L.divIcon({
