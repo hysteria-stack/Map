@@ -67,8 +67,8 @@
     }
     return bar;
   }
- 
-  // ----------------- Central Library -----------------
+  
+  //Central Library
   var polygon1 = L.polygon([
     [1.2970537610730943, 103.77367373113053],
     [1.2972307415033832, 103.77373808736458],
@@ -130,8 +130,8 @@
     this.setStyle({ fillColor: '#2cff05' });
     this.closePopup();
   });
-
-  // ----------------- Mochtar Riady Building -----------------
+  
+  //Mochtar Riady Building
   var polygon2 = L.polygon([
     [1.2926406682847937, 103.77376019954683],
     [1.2927318139513266, 103.77394258975984],
@@ -165,7 +165,7 @@
     this.closePopup();
   });
 
-  // ----------------- The Deck -----------------
+  //The Deck
   var polygon3 = L.polygon([
     [1.2948441861747249, 103.77265985332583],
     [1.2948763644637828, 103.7727188465404],
@@ -212,7 +212,7 @@
     this.closePopup();
   });
 
-  // ----------------- Shaw Foundation Building -----------------
+  //Shaw Foundation Building
   var polygon4 = L.polygon([ 
     [1.2944526836252725, 103.77205893641414], 
     [1.2942864290996847, 103.77168888806838], 
@@ -279,8 +279,7 @@
   }).addTo(map);
 
   polygon5.bindPopup(
-    `<b>Hon Sui Sen Memorial Library</b><br>
-     A conducive place for relaxation and studying.<br><br>
+    `<b>Hon Sui Sen Memorial Library</b><br> A conducive place for relaxation and studying.<br><br>
      <b>Stress Rating</b>: Not Stressful<br>
      <b>Average time spent</b>: 5 hours/week`
   );
@@ -349,6 +348,7 @@
     this.closePopup();
   });
 
+  //University Health Centre
   var polygon7 = L.polygon([
   [1.2992847861974202, 103.77618951312864],
   [1.2991292580674962, 103.77613587942287],
@@ -370,63 +370,102 @@
     fillOpacity: 0.5,
     weight: 2
   }).addTo(map);
-
   polygon7.bindPopup(`
-    <b>University Health Centre</b><br>
-    Place to visit when falling sick 🙁 Most of the time caused by stress.<br><br>
-    <b>Stress Rating:</b><br>
-    ${generateStressBar(3, 5)}<br>
+    <b>University Health Centre</b><br> Place to visit when falling sick 🙁 Most of the time caused by stress.<br><br>
+    <b>Stress Rating:</b><br> ${generateStressBar(3, 5)}<br>
     <b>Average time spent</b>: 5 hours/week
   `);
-
-
   polygon7.on('mouseover', function () {
     this.setStyle({ fillColor: '#ff7800' });
     this.openPopup();
   });
-
   polygon7.on('mouseout', function () {
     this.setStyle({ fillColor: '#2cff05' });
     this.closePopup();
   });
 
-  
-    var businessIcon = L.divIcon({
-    html: `
-      <img id="business-icon" 
-           src="images/business.png" 
-           style="
-             width: 60px;
-             height: 40px;
-             transition: opacity 0.8s ease, transform 0.8s ease;
-             transform-origin: center;
-             opacity: 1;
-             transform: scale(1);
-           ">
-    `,
-    iconSize: [60, 40],
-    iconAnchor: [30, 20],
-    className: '' // remove default Leaflet styling
-  });
-  
-  var businessMarker = L.marker(
-    [1.2925332282401272, 103.77416253089906], 
-    { icon: businessIcon }
-  ).addTo(map);
-  
-  map.on('zoomend', function () {
-    var currentZoom = map.getZoom();
-    var img = document.getElementById('business-icon');
-    if (img) {
-      if (currentZoom > 17) {
-        img.style.opacity = '0';
-        img.style.transform = 'scale(0.8)';
-      } else {
-        img.style.opacity = '1';
-        img.style.transform = 'scale(1)';
+    //Education Resources Centre
+    var polygon8 = L.polygon([
+    [1.3054040060422802, 103.77305688992108],
+    [1.305473725376392, 103.77298180273306],
+    [1.3055219926065698, 103.77273508768668],
+    [1.305607801013489, 103.77267072723981],
+    [1.3057150615180322, 103.77269218072209],
+    [1.3058008699183614, 103.77262782027523],
+    [1.3058330480677294, 103.77255809645776],
+    [1.3060958362721726, 103.77257418656947],
+    [1.3062299118760903, 103.77267072723981],
+    [1.306299631187302, 103.77264927375751],
+    [1.3065195151561302, 103.77282626498642],
+    [1.3065302412029, 103.77288526206272],
+    [1.3065141521327388, 103.77292816902731],
+    [1.3064390698039117, 103.77293889576848],
+    [1.3063639874728452, 103.77308370677395],
+    [1.3063425353778424, 103.77309979688567],
+    [1.3061494665145845, 103.77301398295651],
+    [1.306106562320749, 103.77306761666222],
+    [1.3061011992964546, 103.7730890701445],
+    [1.3057686917685862, 103.77326606137345],
+    [1.3056667942915565, 103.77304616317991],
+    [1.3056721573167671, 103.77321242766769],
+    [1.3054576362994625, 103.77328215148515]
+    ], {
+      color: '#000000',
+      fillColor: '#2cff05',
+      fillOpacity: 0.5,
+      weight: 2
+    }).addTo(map);
+    polygon8.bindPopup(`
+      <b>Education Resources Centre</b><br> Going together with friends to study / revise. A certain extent of stress because the main aim is to study. But still had a lot of fun for the activities, shops and nice views there.<br><br>
+      <b>Stress Rating:</b><br> ${generateStressBar(2, 5)}<br>
+      <b>Average Time Spent</b>: 5 hours/week
+    `);
+    polygon8.on('mouseover', function () {
+      this.setStyle({ fillColor: '#ff7800' });
+      this.openPopup();
+    });
+    polygon8.on('mouseout', function () {
+      this.setStyle({ fillColor: '#2cff05' });
+      this.closePopup();
+    });
+
+    //Business Image
+      var businessIcon = L.divIcon({
+      html: `
+        <img id="business-icon" 
+             src="images/business.png" 
+             style="
+               width: 60px;
+               height: 40px;
+               transition: opacity 0.8s ease, transform 0.8s ease;
+               transform-origin: center;
+               opacity: 1;
+               transform: scale(1);
+             ">
+      `,
+      iconSize: [60, 40],
+      iconAnchor: [30, 20],
+      className: '' // remove default Leaflet styling
+    });
+    
+    var businessMarker = L.marker(
+      [1.2925332282401272, 103.77416253089906], 
+      { icon: businessIcon }
+    ).addTo(map);
+    
+    map.on('zoomend', function () {
+      var currentZoom = map.getZoom();
+      var img = document.getElementById('business-icon');
+      if (img) {
+        if (currentZoom > 17) {
+          img.style.opacity = '0';
+          img.style.transform = 'scale(0.8)';
+        } else {
+          img.style.opacity = '1';
+          img.style.transform = 'scale(1)';
+        }
       }
-    }
-  });
+    });
 
 
 
