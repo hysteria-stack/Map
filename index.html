@@ -114,8 +114,7 @@
   }).addTo(map);
 
   polygon1.bindPopup(
-    `<b>Central Library</b><br>
-     A conducive place for relaxation and studying.<br><br>
+    `<b>Central Library</b><br> A conducive place for studying. Gets busier as project deadlines and exams loom closer.<br><br>
      <img src="images/central-library.jpg" alt="Central Library" style="width: 200px; border-radius: 8px; margin-bottom: 8px;" /><br>
      <b>Stress Rating</b>: Not Stressful<br>
      <b>Average time spent</b>: 5 hours/week`
@@ -214,17 +213,17 @@
 
   //Shaw Foundation Building
   var polygon4 = L.polygon([ 
-    [1.2944526836252725, 103.77205893641414], 
-    [1.2942864290996847, 103.77168888806838], 
-    [1.2939914613661614, 103.7715869906978], 
-    [1.2940021874661738, 103.77154408654175], 
-    [1.2939271047652217, 103.77151190842476], 
-    [1.2938627481626281, 103.77168888806838], 
-    [1.294179168109649, 103.77181223751695], 
-    [1.29420062030802, 103.77185514167299], 
-    [1.2940719071150844, 103.77194119332853], 
-    [1.2941001598098975, 103.77201627571204], 
-    [1.2943366801449324, 103.7721406251606]
+  [1.2944526836252725, 103.77205893641414], 
+  [1.2942864290996847, 103.77168888806838], 
+  [1.2939914613661614, 103.7715869906978], 
+  [1.2940021874661738, 103.77154408654175], 
+  [1.2939271047652217, 103.77151190842476], 
+  [1.2938627481626281, 103.77168888806838], 
+  [1.294179168109649, 103.77181223751695], 
+  [1.29420062030802, 103.77185514167299], 
+  [1.2940719071150844, 103.77194119332853], 
+  [1.2941001598098975, 103.77201627571204], 
+  [1.2943366801449324, 103.7721406251606]
   ], {
     color: '#000000',
     fillColor: '#FFFF00',
@@ -279,7 +278,7 @@
   }).addTo(map);
 
   polygon5.bindPopup(
-    `<b>Hon Sui Sen Memorial Library</b><br> A conducive place for relaxation and studying.<br><br>
+    `<b>Hon Sui Sen Memorial Library</b><br> An air-conditioned area with plenty of studying spots. Sometimes classes are held here as well.<br><br>
      <b>Stress Rating</b>: Not Stressful<br>
      <b>Average time spent</b>: 5 hours/week`
   );
@@ -370,11 +369,13 @@
     fillOpacity: 0.5,
     weight: 2
   }).addTo(map);
+  
   polygon7.bindPopup(`
     <b>University Health Centre</b><br> Place to visit when falling sick 🙁 Most of the time caused by stress.<br><br>
     <b>Stress Rating:</b><br> ${generateStressBar(3, 5)}<br>
     <b>Average time spent</b>: 5 hours/week
   `);
+  
   polygon7.on('mouseover', function () {
     this.setStyle({ fillColor: '#ff7800' });
     this.openPopup();
@@ -415,15 +416,18 @@
       fillOpacity: 0.5,
       weight: 2
     }).addTo(map);
+  
     polygon8.bindPopup(`
       <b>Education Resources Centre</b><br> Going together with friends to study / revise. A certain extent of stress because the main aim is to study. But still had a lot of fun for the activities, shops and nice views there.<br><br>
       <b>Stress Rating:</b><br> ${generateStressBar(2, 5)}<br>
       <b>Average Time Spent</b>: 5 hours/week
     `);
+  
     polygon8.on('mouseover', function () {
       this.setStyle({ fillColor: '#ff7800' });
       this.openPopup();
     });
+  
     polygon8.on('mouseout', function () {
       this.setStyle({ fillColor: '#2cff05' });
       this.closePopup();
