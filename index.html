@@ -435,7 +435,86 @@
     this.setStyle({ fillColor: COLOR_YELLOW});
     this.closePopup();
   });
+  
+  //The Terrace (Canteen)
+  var polygon9 = L.polygon([
+  [1.2944634097233259, 103.77420997793332],
+  [1.2945277663106782, 103.7742957918625],
+  [1.2946189381399704, 103.7743118819742],
+  [1.2946886577719092, 103.7743816057917],
+  [1.2947101099659675, 103.77450496331485],
+  [1.2946886577719092, 103.77460686735571],
+  [1.2946350272859688, 103.77466050106149],
+  [1.2945813967988833, 103.77464977432031],
+  [1.2945116771639928, 103.7746122307263],
+  [1.2944419575271813, 103.7746015039852],
+  [1.2943829639868454, 103.77457468713229],
+  [1.2943186073958162, 103.77456396039115],
+  [1.2942542508031587, 103.7745585970206],
+  [1.29420062030802, 103.77456396039115],
+  [1.2941738050600244, 103.7745371435383],
+  [1.2941630789607625, 103.77451569005599],
+  [1.2940772701649124, 103.77454787027942],
+  [1.2939968244161677, 103.77434406219766],
+  [1.2943615117900138, 103.77416707096873]
+  ], {
+    color: '#000000',
+    fillColor: COLOR_GREEN,
+    fillOpacity: 0.5,
+    weight: 2
+  }).addTo(map);
 
+  polygon9.bindPopup(
+    `<b>The Terrace (Canteen)</b><br> Good place to have lunch with friends (especially those from COM). near to both COM and biz. A lot of memories with friends with little stress. <br><br>
+     <b>Stress Rating:</b><br> ${generateStressBar(1, 5)}<br>
+     <b>Average time spent</b>: 2 hours/week`
+  );
+
+  polygon9.on('mouseover', function () {
+    this.setStyle({ fillColor: COLOR_MOUSEOVER});
+    this.openPopup();
+  });
+
+  polygon9.on('mouseout', function () {
+    this.setStyle({ fillColor: COLOR_GREEN});
+    this.closePopup();
+  });
+
+  //Medicine+Science Library
+  var polygon10 = L.polygon([
+  [1.2954180322680833, 103.7816083431244],
+  [1.295455573596766, 103.78147423267366],
+  [1.2953000452314685, 103.78139913082123],
+  [1.2952410517110937, 103.78150105476381],
+  [1.29506943418948, 103.78145277500154],
+  [1.294978262376396, 103.7816995382309],
+  [1.295064071141751, 103.7816995382309],
+  [1.2950265298072667, 103.78193557262422],
+  [1.2954019431270465, 103.78199458122255],
+  [1.295514567112141, 103.78191947937012],
+  [1.295627191092223, 103.78173708915712]
+  ], {
+    color: '#000000',
+    fillColor: COLOR_YELLOW,
+    fillOpacity: 0.5,
+    weight: 2
+  }).addTo(map);
+  
+  polygon10.bindPopup(`
+    <b>Medicine+Science Library</b><br> The atmosphere is very serious and tense as there are many smart students studying. This motivates me to lock in.<br><br>
+    <b>Stress Rating:</b><br> ${generateStressBar(3, 5)}<br>
+    <b>Average time spent</b>: 5 hours/week
+  `);
+  
+  polygon10.on('mouseover', function () {
+    this.setStyle({ fillColor: COLOR_MOUSEOVER});
+    this.openPopup();
+  });
+  polygon10.on('mouseout', function () {
+    this.setStyle({ fillColor: COLOR_YELLOW});
+    this.closePopup();
+  });
+  
   //Business Image
     var businessIcon = L.divIcon({
     html: `
