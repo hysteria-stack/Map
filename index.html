@@ -384,12 +384,28 @@
 
   
   var libImage = L.icon({
-    iconUrl: 'images/business.png',
-    iconSize: [60, 40],
-    iconAnchor: [30, 20]
+  iconUrl: 'images/business.png',
+  iconSize: [60, 40],
+  iconAnchor: [30, 20]
   });
-  L.marker([1.2925332282401272, 103.77416253089906], { icon: libImage }).addTo(map);
-
+  
+  var businessMarker = L.marker([1.2925332282401272, 103.77416253089906], { icon: libImage }).addTo(map);
+  
+  // --- Hide marker when zoomed in too far ---
+  map.on('zoomend', function () {
+    var currentZoom = map.getZoom();
+  
+    // Adjust this threshold as needed (e.g., hide above zoom level 18)
+    if (currentZoom > 17) {
+      if (map.hasLayer(businessMarker)) {
+        map.removeLayer(businessMarker);
+      }
+    } else {
+      if (!map.hasLayer(businessMarker)) {
+        businessMarker.addTo(map);
+      }
+    }
+  });
 
 
 
