@@ -57,7 +57,17 @@
   }).addTo(map);
   
   L.control.scale().addTo(map);
-  
+
+    function generateStressBar(rating, total = 5) {
+    let bar = '';
+    for (let i = 0; i < total; i++) {
+      bar += `<span style="display:inline-block;width:15px;height:15px;
+        background:${i < rating ? '#f44336' : '#ccc'};
+        margin-right:2px;border-radius:2px;"></span>`;
+    }
+    return bar;
+  }
+ 
   // ----------------- Central Library -----------------
   var polygon1 = L.polygon([
     [1.2970537610730943, 103.77367373113053],
@@ -364,10 +374,8 @@
   polygon7.bindPopup(`
     <b>University Health Centre</b><br>
     Place to visit when falling sick 🙁 Most of the time caused by stress.<br><br>
-    <b>Stress Rating:</b> 
-    <span style="color:#f44336; font-weight:bold;">███</span>
-    <span style="color:#ccc;">██</span>
-    (3 / 5)<br>
+    <b>Stress Rating:</b><br>
+    ${generateStressBar(3, 5)} (3.00 / 5.00)<br>
     <b>Average time spent</b>: 5 hours/week
   `);
 
