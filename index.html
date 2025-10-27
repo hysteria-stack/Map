@@ -515,17 +515,13 @@
     this.closePopup();
   });
 
-//UTown
+  //UTown
   var polygon11 = L.polygon([
-    [1.2926406682847937, 103.77376019954683],
-    [1.2927318139513266, 103.77394258975984],
-    [1.2926621143242878, 103.77417325973512],
-    [1.2925709686552487, 103.77443075180055],
-    [1.2923297006920422, 103.77452731132509],
-    [1.2922760855859792, 103.77439320087433],
-    [1.2923618697551127, 103.77413570880891],
-    [1.2923404237131124, 103.77404987812042],
-    [1.2924959075135973, 103.7738084793091]
+  [1.3045137436059147, 103.773792386055],
+  [1.3046639083763008, 103.77443075180055],
+  [1.303720015384964, 103.77507448196413],
+  [1.3034089596625535, 103.774151802063],
+  [1.304159783754514, 103.77365291118623]
   ], {
     color: '#000000',
     fillColor: COLOR_RED,
@@ -546,6 +542,122 @@
 
   polygon11.on('mouseout', function () {
     this.setStyle({ fillColor: COLOR_RED});
+    this.closePopup();
+  });
+
+  //CoolSpot
+  var polygon12 = L.polygon([
+  [1.2941845311592481, 103.77391576766968],
+  [1.2941523528614371, 103.77406597137453],
+  [1.2943454226422724, 103.77414107322694],
+  [1.2943883270360246, 103.77400159835817]
+  ], {
+    color: '#000000',
+    fillColor: COLOR_GREEN,
+    fillOpacity: 0.5,
+    weight: 2
+  }).addTo(map);
+
+  polygon12.bindPopup(
+    `<b>CoolSpot</b><br> Iconic milocino sold by a young male with photogenic memory. He remembered our orders after seeing us twice only. His milocino is extra concentrated so its very yummy.<br><br>
+     <b>Stress Rating:</b><br> ${generateStressBar(1, 5)}<br>
+     <b>Average Time Spent</b>: X hours/week`
+  );
+
+  polygon12.on('mouseover', function () {
+    this.setStyle({ fillColor: COLOR_MOUSEOVER});
+    this.openPopup();
+  });
+
+  polygon12.on('mouseout', function () {
+    this.setStyle({ fillColor: COLOR_GREEN});
+    this.closePopup();
+  });
+
+  //CoffeeRoasters
+  var polygon13 = L.polygon([
+  [1.2962707565966372, 103.77203285694124],
+  [1.2959972412772411, 103.77190947532655],
+  [1.295798808576052, 103.77251029014587],
+  [1.296093776099226, 103.77269804477692]
+  ], {
+    color: '#000000',
+    fillColor: COLOR_GREEN,
+    fillOpacity: 0.5,
+    weight: 2
+  }).addTo(map);
+
+  polygon13.bindPopup(
+    `<b>CoffeeRoasters/b><br> Good place to study in silence but also with the smell of coffee wafting by. Chosen because it is where I spent most of my time studying as a freshman. Not stressful because I enjoy the ambience and environment. Time spend 3hr a week <br><br>
+     <b>Stress Rating:</b><br> ${generateStressBar(1, 5)}<br>
+     <b>Average Time Spent</b>: 3 hours/week`
+  );
+
+  polygon13.on('mouseover', function () {
+    this.setStyle({ fillColor: COLOR_MOUSEOVER});
+    this.openPopup();
+  });
+
+  polygon13.on('mouseout', function () {
+    this.setStyle({ fillColor: COLOR_GREEN});
+    this.closePopup();
+  });
+
+  //AS4
+  var polygon14 = L.polygon([
+  [1.294404416183486, 103.77129793167116],
+  [1.2946832947233662, 103.77193629741669],
+  [1.2945653076525414, 103.77198994159698],
+  [1.294275703000881, 103.77135157585145]
+  ], {
+    color: '#000000',
+    fillColor: COLOR_GREEN,
+    fillOpacity: 0.5,
+    weight: 2
+  }).addTo(map);
+
+  polygon14.bindPopup(
+    `<b>AS4/b><br> Sateiish: My friend is a cat feeder with NUS cat cafe and i follow him weekly when he feeds one of the cats at AS4.<br><br>
+     <b>Stress Rating:</b><br> ${generateStressBar(1, 5)}<br>
+     <b>Average Time Spent</b>: 1.5 hours/week`
+  );
+
+  polygon14.on('mouseover', function () {
+    this.setStyle({ fillColor: COLOR_MOUSEOVER});
+    this.openPopup();
+  });
+
+  polygon14.on('mouseout', function () {
+    this.setStyle({ fillColor: COLOR_GREEN});
+    this.closePopup();
+  });
+
+  //Biz2
+  var polygon15 = L.polygon([
+  [1.293970009166022, 103.7745648622513],
+  [1.294039728815823, 103.77472579479218],
+  [1.2935463281761175, 103.77491891384126],
+  [1.2933854366424333, 103.77474188804628]
+  ], {
+    color: '#000000',
+    fillColor: COLOR_YELLOW,
+    fillOpacity: 0.5,
+    weight: 2
+  }).addTo(map);
+
+  polygon15.bindPopup(
+    `<b>AS4/b><br> Sateiish: "2 of my modules are here so I spend a considerable time in biz 2. It is more rugged looking than biz one and does not feel as welcoming."<br><br>
+     <b>Stress Rating:</b><br> ${generateStressBar(3, 5)}<br>
+     <b>Average Time Spent</b>: 1.5 hours/week`
+  );
+
+  polygon15.on('mouseover', function () {
+    this.setStyle({ fillColor: COLOR_MOUSEOVER});
+    this.openPopup();
+  });
+
+  polygon15.on('mouseout', function () {
+    this.setStyle({ fillColor: COLOR_YELLOW});
     this.closePopup();
   });
   
@@ -587,9 +699,6 @@
     }
   });
 
-
-
-  
   // Leaflet Draw Setup
   var drawnItems = new L.FeatureGroup();
   map.addLayer(drawnItems);
