@@ -61,31 +61,33 @@
   const COLOR_YELLOW = '#FFFF00';  // Slightly stressful
   const COLOR_RED = '#F54927';     // Very stressful
   const COLOR_MOUSEOVER = '#ff7800' 
-    
-function generateStressBar(rating, total = 5) {
-  let color;
-  if (rating === 1) {
-    color = COLOR_GREEN; 
-  } else if (rating === 5) {
-    color = COLOR_RED;
-  } else {
-    color = COLOR_YELLOW;
-  }
-  
-  let bar = '';
-  for (let i = 0; i < total; i++) {
-    bar += `<span style="
-      display:inline-block;
-      width:15px;
-      height:15px;
-      background:${i < rating ? color : '#ccc'};
-      margin-right:2px;
-      border-radius:2px;
-    "></span>`;
-  }
 
-  return bar;
-}
+  function generateStressBar(rating, total = 5) {
+    let color;
+  
+    if (rating === 1) {
+      color = COLOR_GREEN;
+    } else if (rating === 5) {
+      color = COLOR_RED;
+    } else {
+      color = COLOR_YELLOW;
+    }
+    let bar = '';
+  
+    for (let i = 0; i < total; i++) {
+      bar += `<span style="
+        display:inline-block;
+        width:15px;
+        height:15px;
+        background:${i < rating ? color : '#ccc'};
+        margin-right:2px;
+        border-radius:2px;
+        border:1px solid #000;  /* black border for all blocks */
+      "></span>`;
+    }
+  
+    return bar;
+  }
   
   //Central Library
   var polygon1 = L.polygon([
