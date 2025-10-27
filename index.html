@@ -374,7 +374,8 @@
   polygon7.bindPopup(`
     <b>University Health Centre</b><br>
     Place to visit when falling sick 🙁 Most of the time caused by stress.<br><br>
-    <b>Stress Rating:</b>${generateStressBar(3, 5)} (3.00 / 5.00)<br>
+    <b>Stress Rating:</b><br>
+    ${generateStressBar(3, 5)} (3.00 / 5.00)<br>
     <b>Average time spent</b>: 5 hours/week
   `);
 
@@ -390,26 +391,39 @@
   });
 
   
-  var libImage = L.icon({
-  iconUrl: 'images/business.png',
-  iconSize: [60, 40],
-  iconAnchor: [30, 20]
+    var businessIcon = L.divIcon({
+    html: `
+      <img id="business-icon" 
+           src="images/business.png" 
+           style="
+             width: 60px;
+             height: 40px;
+             transition: opacity 0.8s ease, transform 0.8s ease;
+             transform-origin: center;
+             opacity: 1;
+             transform: scale(1);
+           ">
+    `,
+    iconSize: [60, 40],
+    iconAnchor: [30, 20],
+    className: '' // remove default Leaflet styling
   });
   
-  var businessMarker = L.marker([1.2925332282401272, 103.77416253089906], { icon: libImage }).addTo(map);
+  var businessMarker = L.marker(
+    [1.2925332282401272, 103.77416253089906], 
+    { icon: businessIcon }
+  ).addTo(map);
   
-  // --- Hide marker when zoomed in too far ---
   map.on('zoomend', function () {
     var currentZoom = map.getZoom();
-  
-    // Adjust this threshold as needed (e.g., hide above zoom level 18)
-    if (currentZoom > 17) {
-      if (map.hasLayer(businessMarker)) {
-        map.removeLayer(businessMarker);
-      }
-    } else {
-      if (!map.hasLayer(businessMarker)) {
-        businessMarker.addTo(map);
+    var img = document.getElementById('business-icon');
+    if (img) {
+      if (currentZoom > 17) {
+        img.style.opacity = '0';
+        img.style.transform = 'scale(0.8)';
+      } else {
+        img.style.opacity = '1';
+        img.style.transform = 'scale(1)';
       }
     }
   });
