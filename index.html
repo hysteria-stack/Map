@@ -252,9 +252,9 @@
   }).addTo(map);
 
   polygon4.bindPopup(
-    `<em><b>Sbhaw Foundation Building<br>Hong Yeow: </b>"Weekly GEX1033 lectures are held here. There's an interesting map right outside the classroom made with different coloured mosses, attached with a quote by Gandhi ~ work of Prof TC Chang!<br><br></em>
+    `<em><b>Shaw Foundation Building<br>Hong Yeow: </b>"Weekly GEX1033 lectures are held here. There's an interesting map right outside the classroom made with different coloured mosses, attached with a quote by Gandhi, work of Prof TC Chang!<br><br></em>
      <b>Stress Rating:</b><br> ${generateStressBar(2, 5)}<br>
-     <b>Average Time Spent</b>: X hours/week`
+     <b>Average Time Spent</b>: 2 hours/week`
   );
 
   polygon4.on('mouseover', function () {
@@ -266,7 +266,8 @@
     this.setStyle({ fillColor: COLOR_YELLOW});
     this.closePopup();
   });
-  
+
+  //HSSML
   var polygon5 = L.polygon([
   [1.2929242141893083, 103.77475798130035],
   [1.2926989659840635, 103.77431809902193],
@@ -298,9 +299,9 @@
   }).addTo(map);
 
   polygon5.bindPopup(
-    `<b>Hon Sui Sen Memorial Library</b><br> An air-conditioned area with plenty of studying spots. Sometimes classes are held here as well.<br><br>
+    `<em><b>Hon Sui Sen Memorial Library<br><img src="images/hssml.jpg" alt="HSSML" style="width: 200px; border-radius: 8px; margin-bottom: 8px;" /><br>Hong Yeow: </b>"My second favourite spot to study. There's classes nearby so noise levels can be high sometimes. Recently attended a few interesting workshops here, which was pretty cool."<br><br></em>
      <b>Stress Rating:</b><br> ${generateStressBar(3, 5)}<br>
-     <b>Average Time Spent</b>: X hours/week`
+     <b>Average Time Spent</b>: 2 hours/week`
   );
 
   polygon5.on('mouseover', function () {
@@ -313,6 +314,7 @@
     this.closePopup();
   });
 
+  //CDE Buzzy Kitchen
   var polygon6 = L.polygon([
   [1.3005236478557476, 103.77045571804048],
   [1.3007542584003482, 103.77053618431093],
@@ -351,9 +353,9 @@
   }).addTo(map);
 
   polygon6.bindPopup(
-    `<b>CDE BUZZy Kitchen</b><br> A conducive place for relaxation and studying.<br><br>
+    `<em><b>CDE BUZZy Kitchen<br>Ryan: </b>"Had fun memories here cooking with my fellow club members. Relaxing place overall."<br><br></em>
      <b>Stress Rating:</b><br> ${generateStressBar(1, 5)}<br>
-     <b>Average Time Spent</b>: X hours/week`
+     <b>Average Time Spent</b>: 2 hours/week`
   );
 
   polygon6.on('mouseover', function () {
@@ -516,8 +518,8 @@
     weight: 2
   }).addTo(map);
   
-  polygon10.bindPopup(`
-  <em><b>Medicine+Science Library<br><img src="images/medicine.png" alt="Medicine+Science Library" style="width: 200px; border-radius: 8px; margin-bottom: 8px;" /><br>Jolin: </b>"The atmosphere is very serious and tense as there are many smart students studying. This motivates me to lock in."<br><br></em>
+  polygon10.bindPopup(
+  `<em><b>Medicine+Science Library<br><img src="images/medicine.png" alt="Medicine+Science Library" style="width: 200px; border-radius: 8px; margin-bottom: 8px;" /><br>Jolin: </b>"The atmosphere is very serious and tense as there are many smart students studying. This motivates me to lock in."<br><br></em>
   <b>Stress Rating:</b><br> ${generateStressBar(3, 5)}<br>
   <b>Average Time Spent</b>: 3 hours/week
 `);
@@ -549,7 +551,7 @@
   polygon11.bindPopup(
     `<b>UTown</b><br><br><br>
      <b>Stress Rating:</b><br> ${generateStressBar(5, 5)}<br>
-     <b>Average Time Spent</b>: X hours/week`
+     <b>Average Time Spent</b>: 6 hours/week`
   );
 
   polygon11.on('mouseover', function () {
@@ -576,9 +578,8 @@
   }).addTo(map);
 
   polygon12.bindPopup(
-    `<b>CoolSpot</b><br> Iconic milocino sold by a young male with photogenic memory. He remembered our orders after seeing us twice only. His milocino is extra concentrated so its very yummy.<br><br>
-     <b>Stress Rating:</b><br> ${generateStressBar(1, 5)}<br>
-     <b>Average Time Spent</b>: X hours/week`
+    `<em><b>CoolSpot<br>Jolin: </b>"Iconic milocino sold by a young guy with photogenic memory. He remembered our orders after seeing us twice only. His milocino is extra concentrated so its very yummy."<br><br></em>
+     <b>Average Time Spent</b>: 1 hours/week`
   );
 
   polygon12.on('mouseover', function () {
@@ -634,7 +635,7 @@
   }).addTo(map);
 
   polygon14.bindPopup(
-    `<b>AS4</b><br> Sateiish: My friend is a cat feeder with NUS cat cafe and i follow him weekly when he feeds one of the cats at AS4.<br><br>
+    `<em><b>AS4<br>Sateiish:</b> "My friend is a cat feeder with NUS cat cafe and I follow him weekly when he feeds one of the cats at AS4."</em><br><br>
      <b>Stress Rating:</b><br> ${generateStressBar(1, 5)}<br>
      <b>Average Time Spent</b>: 1.5 hours/week`
   );
@@ -663,7 +664,7 @@
   }).addTo(map);
 
   polygon15.bindPopup(
-    `<b>Biz2</b><br> Sateiish: "2 of my modules are here so I spend a considerable time in biz 2. It is more rugged looking than biz one and does not feel as welcoming."<br><br>
+    `<em><b>Biz 2<br>Sateiish:</b> "2 of my modules are here so I spend a considerable time in Biz 2. It is more rugged looking than Biz 1 and does not feel as welcoming."</em><br><br>
      <b>Stress Rating:</b><br> ${generateStressBar(3, 5)}<br>
      <b>Average Time Spent</b>: 1.5 hours/week`
   );
