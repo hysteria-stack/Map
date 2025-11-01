@@ -517,10 +517,11 @@
   }).addTo(map);
   
   polygon10.bindPopup(`
-    `<em><b>Medicine+Science Library<br>Jolin: </b>"The atmosphere is very serious and tense as there are many smart students studying. This motivates me to lock in."<br><br></em>
-    <b>Stress Rating:</b><br> ${generateStressBar(3, 5)}<br>
-    <b>Average Time Spent</b>: 3 hours/week
-  `);
+  <em><b>Medicine+Science Library<br>Jolin: </b>"The atmosphere is very serious and tense as there are many smart students studying. This motivates me to lock in."<br><br></em>
+  <b>Stress Rating:</b><br> ${generateStressBar(3, 5)}<br>
+  <b>Average Time Spent</b>: 3 hours/week
+`);
+
   
   polygon10.on('mouseover', function () {
     this.setStyle({ fillColor: COLOR_MOUSEOVER});
@@ -662,7 +663,7 @@
   }).addTo(map);
 
   polygon15.bindPopup(
-    `<b>AS4</b><br> Sateiish: "2 of my modules are here so I spend a considerable time in biz 2. It is more rugged looking than biz one and does not feel as welcoming."<br><br>
+    `<b>Biz2</b><br> Sateiish: "2 of my modules are here so I spend a considerable time in biz 2. It is more rugged looking than biz one and does not feel as welcoming."<br><br>
      <b>Stress Rating:</b><br> ${generateStressBar(3, 5)}<br>
      <b>Average Time Spent</b>: 1.5 hours/week`
   );
@@ -741,17 +742,20 @@
   
   map.on('zoomend', function () {
     var currentZoom = map.getZoom();
-    var img = document.getElementById('computer-icon');
-    if (img) {
-      if (currentZoom > 17) {
-        img.style.opacity = '0';
-        img.style.transform = 'scale(0.8)';
-      } else {
-        img.style.opacity = '1';
-        img.style.transform = 'scale(1)';
+    ['business-icon', 'computer-icon'].forEach(id => {
+      var img = document.getElementById(id);
+      if (img) {
+        if (currentZoom > 17) {
+          img.style.opacity = '0';
+          img.style.transform = 'scale(0.8)';
+        } else {
+          img.style.opacity = '1';
+          img.style.transform = 'scale(1)';
+        }
       }
-    }
+    });
   });
+
 
   // Leaflet Draw Setup
   var drawnItems = new L.FeatureGroup();
