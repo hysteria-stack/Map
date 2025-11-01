@@ -788,21 +788,31 @@
     { icon: artIcon }
   ).addTo(map);
   
-  map.on('zoomend', function () {
+  // Handle icon visibility on zoom
+  function updateIconVisibility() {
     var currentZoom = map.getZoom();
-    ['business-icon', 'computer-icon','science-icon','art-icon'].forEach(id => {
+    ['business-icon', 'computer-icon', 'science-icon', 'art-icon'].forEach(id => {
       var img = document.getElementById(id);
       if (img) {
         if (currentZoom > 15) {
+          // Zoomed in — hide icons
           img.style.opacity = '0';
           img.style.transform = 'scale(0.8)';
         } else {
+          // Zoomed out — show icons
           img.style.opacity = '1';
           img.style.transform = 'scale(1)';
         }
       }
     });
-  });
+  }
+
+  // Run once on map load
+  map.whenReady(updateIconVisibility);
+  
+  // Run every time zoom changes
+  map.on('zoomend', updateIconVisibility);
+
 
 
   // Leaflet Draw Setup
