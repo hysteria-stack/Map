@@ -216,7 +216,7 @@
   }).addTo(map);
 
   polygon3.bindPopup(
-    `<em><b>The Deck<br><img src="images/thedeck.jpg" alt="The Deck" style="width: 200px; border-radius: 8px; margin-bottom: 8px;" /><br>Hong Yeow: </b>"A nice food hotspot! The top level was undergoing renovations a little while back, but there are still plenty of stalls open. I always get curry katsu don from the Japanese stall before GEX1003 lectures.<br><br></em>
+    `<em><b>The Deck<br><img src="images/thedeck.jpg" alt="The Deck" style="width: 200px; border-radius: 8px; margin-bottom: 8px;" /><br>Hong Yeow: </b>"A nice food hotspot! The top level was undergoing renovations a little while back, but there are still plenty of stalls open. I always get myself the curry katsu don from the Japanese stall before our GEX1003 lectures.<br><br></em>
      <b>Stress Rating:</b><br> ${generateStressBar(1, 5)}<br>
      <b>Average Time Spent</b>: 1 hour/week`
   );
@@ -452,7 +452,7 @@
     this.closePopup();
   });
   
-  //The Terrace (Canteen)
+  //The Terrace
   var polygon9 = L.polygon([
   [1.2944634097233259, 103.77420997793332],
   [1.2945277663106782, 103.7742957918625],
@@ -481,9 +481,9 @@
   }).addTo(map);
 
   polygon9.bindPopup(
-    `<b>The Terrace (Canteen)</b><br> Good place to have lunch with friends (especially those from COM). near to both COM and biz. A lot of memories with friends with little stress. <br><br>
+    `<em><b>The Terrace<br>Elvia: </b>"Going together with friends to study / revise. A certain extent of stress because the main aim is to study. But still had a lot of fun for the activities, shops and nice views there."<br><br></em>
      <b>Stress Rating:</b><br> ${generateStressBar(1, 5)}<br>
-     <b>Average Time Spent</b>: X hours/week`
+     <b>Average Time Spent</b>: 3 hours/week`
   );
 
   polygon9.on('mouseover', function () {
@@ -517,9 +517,9 @@
   }).addTo(map);
   
   polygon10.bindPopup(`
-    <b>Medicine+Science Library</b><br> The atmosphere is very serious and tense as there are many smart students studying. This motivates me to lock in.<br><br>
+    `<em><b>Medicine+Science Library<br>Jolin: </b>"The atmosphere is very serious and tense as there are many smart students studying. This motivates me to lock in."<br><br></em>
     <b>Stress Rating:</b><br> ${generateStressBar(3, 5)}<br>
-    <b>Average Time Spent</b>: X hours/week
+    <b>Average Time Spent</b>: 3 hours/week
   `);
   
   polygon10.on('mouseover', function () {
