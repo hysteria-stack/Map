@@ -677,7 +677,7 @@
     this.closePopup();
   });
   
-  //Business Image
+  //Business Icon
     var businessIcon = L.divIcon({
     html: `
       <img id="business-icon" 
@@ -693,7 +693,7 @@
     `,
     iconSize: [60, 40],
     iconAnchor: [30, 20],
-    className: '' // remove default Leaflet styling
+    className: '' 
   });
   
   var businessMarker = L.marker(
@@ -704,6 +704,44 @@
   map.on('zoomend', function () {
     var currentZoom = map.getZoom();
     var img = document.getElementById('business-icon');
+    if (img) {
+      if (currentZoom > 17) {
+        img.style.opacity = '0';
+        img.style.transform = 'scale(0.8)';
+      } else {
+        img.style.opacity = '1';
+        img.style.transform = 'scale(1)';
+      }
+    }
+  });
+
+  //Computer Icon
+    var computerIcon = L.divIcon({
+    html: `
+      <img id="computer-icon" 
+           src="images/computer.jpg" 
+           style="
+             width: 60px;
+             height: 40px;
+             transition: opacity 0.8s ease, transform 0.8s ease;
+             transform-origin: center;
+             opacity: 1;
+             transform: scale(1);
+           ">
+    `,
+    iconSize: [60, 40],
+    iconAnchor: [30, 20],
+    className: '' 
+  });
+  
+  var computerMarker = L.marker(
+    [1.2945419575271813, 103.7756015039852], 
+    { icon: computerIcon }
+  ).addTo(map);
+  
+  map.on('zoomend', function () {
+    var currentZoom = map.getZoom();
+    var img = document.getElementById('computer-icon');
     if (img) {
       if (currentZoom > 17) {
         img.style.opacity = '0';
