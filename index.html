@@ -436,10 +436,10 @@
     weight: 2
   }).addTo(map);
 
-  polygon8.bindPopup(`
-    <b>Education Resources Centre</b><br> Going together with friends to study / revise. A certain extent of stress because the main aim is to study. But still had a lot of fun for the activities, shops and nice views there.<br><br>
+  polygon8.bindPopup(
+    `<em><b>Education Resources Centre<br>Elvia: </b>"Going together with friends to study / revise. A certain extent of stress because the main aim is to study. But still had a lot of fun for the activities, shops and nice views there."<br><br></em>
     <b>Stress Rating:</b><br> ${generateStressBar(2, 5)}<br>
-    <b>Average Time Spent</b>: X hours/week
+    <b>Average Time Spent</b>: 3 hours/week
   `);
 
   polygon8.on('mouseover', function () {
@@ -481,9 +481,9 @@
   }).addTo(map);
 
   polygon9.bindPopup(
-    `<em><b>The Terrace<br>Elvia: </b>"Going together with friends to study / revise. A certain extent of stress because the main aim is to study. But still had a lot of fun for the activities, shops and nice views there."<br><br></em>
+    `<em><b>The Terrace<br>Elvia: </b>"Good place to have lunch with friends (especially those from COM). near to both COM and biz. A lot of memories with friends with little stress."<br><br></em>
      <b>Stress Rating:</b><br> ${generateStressBar(1, 5)}<br>
-     <b>Average Time Spent</b>: 3 hours/week`
+     <b>Average Time Spent</b>: 1 hour/week`
   );
 
   polygon9.on('mouseover', function () {
@@ -763,10 +763,34 @@
     [1.2960568319104226, 103.77945184707642], 
     { icon: scienceIcon }
   ).addTo(map);
+
+    //Art Icon
+    var artIcon = L.divIcon({
+    html: `
+      <img id="art-icon" 
+           src="images/palette.png" 
+           style="
+             width: 60px;
+             height: 40px;
+             transition: opacity 0.8s ease, transform 0.8s ease;
+             transform-origin: center;
+             opacity: 1;
+             transform: scale(1);
+           ">
+    `,
+    iconSize: [75, 75],
+    iconAnchor: [30, 20],
+    className: '' 
+  });
+  
+  var artMarker = L.marker(
+    [1.2950217206868495, 103.7709492444992], 
+    { icon: artIcon }
+  ).addTo(map);
   
   map.on('zoomend', function () {
     var currentZoom = map.getZoom();
-    ['business-icon', 'computer-icon','science-icon'].forEach(id => {
+    ['business-icon', 'computer-icon','science-icon','art-icon'].forEach(id => {
       var img = document.getElementById(id);
       if (img) {
         if (currentZoom > 17) {
