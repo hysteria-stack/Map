@@ -739,10 +739,34 @@
     [1.2947641755688362, 103.77451658248903], 
     { icon: computerIcon }
   ).addTo(map);
+
+  //Computer Icon
+    var computerIcon = L.divIcon({
+    html: `
+      <img id="computer-icon" 
+           src="images/pc.png" 
+           style="
+             width: 60px;
+             height: 40px;
+             transition: opacity 0.8s ease, transform 0.8s ease;
+             transform-origin: center;
+             opacity: 1;
+             transform: scale(1);
+           ">
+    `,
+    iconSize: [75, 75],
+    iconAnchor: [30, 20],
+    className: '' 
+  });
+  
+  var scienceMarker = L.marker(
+    [1.2960568319104226, 103.77945184707642], 
+    { icon: scienceIcon }
+  ).addTo(map);
   
   map.on('zoomend', function () {
     var currentZoom = map.getZoom();
-    ['business-icon', 'computer-icon'].forEach(id => {
+    ['business-icon', 'computer-icon','science-icon].forEach(id => {
       var img = document.getElementById(id);
       if (img) {
         if (currentZoom > 17) {
