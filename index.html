@@ -766,7 +766,7 @@
   
   map.on('zoomend', function () {
     var currentZoom = map.getZoom();
-    ['business-icon', 'computer-icon','science-icon].forEach(id => {
+    ['business-icon', 'computer-icon','science-icon'].forEach(id => {
       var img = document.getElementById(id);
       if (img) {
         if (currentZoom > 17) {
