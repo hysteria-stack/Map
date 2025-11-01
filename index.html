@@ -135,7 +135,7 @@
   }).addTo(map);
 
   polygon1.bindPopup(
-    `<em><b>Central Library<br><img src="images/central-library.jpg" alt="Central Library" style="width: 200px; border-radius: 8px; margin-bottom: 8px;" /><br>Hong Yeow:</b> "The library is nicely air-conditioned, and pretty quiet especially earlier in the mornings. I often study here before classes, and visit The Soup Spoon right downstairs to grab lunch. Definitely gets busier during project submissions and exam periods."<br><br></em>
+    `<em><b>Central Library<br><img src="images/central-library.jpg" alt="Central Library" style="width: 200px; border-radius: 8px; margin-bottom: 8px;" /><br>Hong Yeow:</b>"The library is nicely air-conditioned, and pretty quiet especially earlier in the mornings. I often study here before classes, and visit The Soup Spoon right downstairs to grab lunch. Definitely gets busier during project submissions and exam periods."<br><br></em>
      <b>Stress Rating:</b><br> ${generateStressBar(3, 5)}<br>
      <b>Average Time Spent</b>: 5 hours/week`
   );
@@ -169,9 +169,9 @@
   }).addTo(map);
 
   polygon2.bindPopup(
-    `<b>Mochtar Riady Building</b><br>A glass building where lectures and tutorials are conducted.<br><br>
+    `<em><b>Mochtar Riady Building<br><img src="images/mochtarriady.jpg" alt="Mochtar Riady Building" style="width: 200px; border-radius: 8px; margin-bottom: 8px;" /><br>Ryan:</b>"A distinctive glass building where many business lectures and tutorials are conducted. One of the busier, more stressful hotspots for business students. There is a cafe called "The Spread" on the ground floor, which is fairly popular with students.<br><br></em>
      <b>Stress Rating:</b><br> ${generateStressBar(4, 5)}<br>
-     <b>Average Time Spent</b>: X hours/week`
+     <b>Average Time Spent</b>: 9 hours/week`
   );
 
   polygon2.on('mouseover', function () {
