@@ -681,7 +681,6 @@
     this.closePopup();
   });
   
-  // Helper to create labeled icons
   function createFacultyIcon(id, imgSrc, label) {
     return L.divIcon({
       html: `
@@ -713,7 +712,6 @@
     });
   }
   
-  // Create markers
   var businessMarker = L.marker([1.2925332282401272, 103.77416253089906], {
     icon: createFacultyIcon('business', 'images/business.png', 'Business')
   }).addTo(map);
@@ -729,11 +727,15 @@
   var artMarker = L.marker([1.2950217206868495, 103.7709492444992], {
     icon: createFacultyIcon('art', 'images/palette.png', 'Arts and Social Sciences')
   }).addTo(map);
+
+  var engineeringMarker = L.marker([1.3003738639522173, 103.77127647399904], {
+    icon: createFacultyIcon('engineering', 'images/palette.png', 'Design and Engineering')
+  }).addTo(map);
   
   // Zoom handler — unified
   map.on('zoomend', function () {
     var currentZoom = map.getZoom();
-    ['business', 'computer', 'science', 'art'].forEach(id => {
+    ['business', 'computer', 'science', 'art','engineering'].forEach(id => {
       var wrapper = document.getElementById(id + '-wrapper');
       if (wrapper) {
         if (currentZoom > 15) {
