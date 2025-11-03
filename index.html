@@ -732,13 +732,12 @@
     icon: createFacultyIcon('engineering', 'images/palette.png', 'Design and Engineering')
   }).addTo(map);
   
-  // Zoom handler — unified
   map.on('zoomend', function () {
     var currentZoom = map.getZoom();
     ['business', 'computer', 'science', 'art','engineering'].forEach(id => {
       var wrapper = document.getElementById(id + '-wrapper');
       if (wrapper) {
-        if (currentZoom > 15) {
+        if (currentZoom > 17) {
           wrapper.style.opacity = '0';
           wrapper.style.transform = 'scale(0.8)';
         } else {
