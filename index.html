@@ -767,29 +767,44 @@
     { icon: scienceIcon }
   ).addTo(map);
 
-    //Art Icon
-    var artIcon = L.divIcon({
+   // Art Icon with label below
+  var artIcon = L.divIcon({
     html: `
-      <img id="art-icon" 
-           src="images/palette.png" 
-           style="
-             width: 60px;
-             height: 40px;
-             transition: opacity 0.8s ease, transform 0.8s ease;
-             transform-origin: center;
-             opacity: 1;
-             transform: scale(1);
-           ">
+      <div style="text-align:center;">
+        <img id="art-icon" 
+             src="images/palette.png" 
+             style="
+               width: 60px;
+               height: 40px;
+               transition: opacity 0.8s ease, transform 0.8s ease;
+               transform-origin: center;
+               opacity: 1;
+               transform: scale(1);
+               display: block;
+               margin: 0 auto;
+             ">
+        <span style="
+          display: block;
+          font-size: 12px;
+          font-weight: 600;
+          color: #333;
+          margin-top: 2px;
+          font-family: sans-serif;
+        ">
+          Art
+        </span>
+      </div>
     `,
     iconSize: [75, 75],
     iconAnchor: [30, 20],
-    className: '' 
+    className: ''
   });
   
   var artMarker = L.marker(
     [1.2950217206868495, 103.7709492444992], 
     { icon: artIcon }
   ).addTo(map);
+
   
 map.on('zoomend', function () {
   var currentZoom = map.getZoom();
@@ -882,7 +897,7 @@ map.on('zoomend', function () {
         <i style="background:${COLOR_RED};width:18px;height:18px;display:inline-block;margin-right:5px;border-radius:3px;"></i> Very Stressful
         <hr style="margin:6px 0;border:none;border-top:1px solid #ccc;">
         <small style="color:#555;display:block;text-align:left;">
-          <em>Note:</em> Icons indicate general faculty location.
+          <em>Note:</em>Icons indicate approximate faculty locations.
         </small>
       `;
       div.style.background = 'white';
