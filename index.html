@@ -681,149 +681,71 @@
     this.closePopup();
   });
   
-  //Business Icon
-    var businessIcon = L.divIcon({
-    html: `
-      <img id="business-icon" 
-           src="images/business.png" 
-           style="
-             width: 60px;
-             height: 40px;
-             transition: opacity 0.8s ease, transform 0.8s ease;
-             transform-origin: center;
-             opacity: 1;
-             transform: scale(1);
-           ">
-    `,
-    iconSize: [60, 40],
-    iconAnchor: [30, 20],
-    className: '' 
-  });
+  // Helper to create labeled icons
+  function createFacultyIcon(id, imgSrc, label) {
+    return L.divIcon({
+      html: `
+        <div id="${id}-wrapper" style="text-align:center;transition:opacity 0.8s ease, transform 0.8s ease;">
+          <img id="${id}-img"
+               src="${imgSrc}"
+               style="
+                 width: 60px;
+                 height: 40px;
+                 transform-origin: center;
+                 opacity: 1;
+                 transform: scale(1);
+                 display: block;
+                 margin: 0 auto;
+               ">
+          ${label ? `<span style="
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            color: #333;
+            margin-top: 2px;
+            font-family: sans-serif;
+          ">${label}</span>` : ''}
+        </div>
+      `,
+      iconSize: [75, 75],
+      iconAnchor: [30, 20],
+      className: ''
+    });
+  }
   
-  var businessMarker = L.marker(
-    [1.2925332282401272, 103.77416253089906], 
-    { icon: businessIcon }
-  ).addTo(map);
+  // Create markers
+  var businessMarker = L.marker([1.2925332282401272, 103.77416253089906], {
+    icon: createFacultyIcon('business', 'images/business.png', 'Business')
+  }).addTo(map);
   
+  var computerMarker = L.marker([1.2947641755688362, 103.77451658248903], {
+    icon: createFacultyIcon('computer', 'images/pc.png', 'Computer')
+  }).addTo(map);
+  
+  var scienceMarker = L.marker([1.2960568319104226, 103.77945184707642], {
+    icon: createFacultyIcon('science', 'images/laboratory.png', 'Science')
+  }).addTo(map);
+  
+  var artMarker = L.marker([1.2950217206868495, 103.7709492444992], {
+    icon: createFacultyIcon('art', 'images/palette.png', 'Art')
+  }).addTo(map);
+  
+  // Zoom handler — unified
   map.on('zoomend', function () {
     var currentZoom = map.getZoom();
-    var img = document.getElementById('business-icon');
-    if (img) {
-      if (currentZoom > 17) {
-        img.style.opacity = '0';
-        img.style.transform = 'scale(0.8)';
-      } else {
-        img.style.opacity = '1';
-        img.style.transform = 'scale(1)';
+    ['business', 'computer', 'science', 'art'].forEach(id => {
+      var wrapper = document.getElementById(id + '-wrapper');
+      if (wrapper) {
+        if (currentZoom > 15) {
+          wrapper.style.opacity = '0';
+          wrapper.style.transform = 'scale(0.8)';
+        } else {
+          wrapper.style.opacity = '1';
+          wrapper.style.transform = 'scale(1)';
+        }
       }
-    }
+    });
   });
-
-  //Computer Icon
-    var computerIcon = L.divIcon({
-    html: `
-      <img id="computer-icon" 
-           src="images/pc.png" 
-           style="
-             width: 60px;
-             height: 40px;
-             transition: opacity 0.8s ease, transform 0.8s ease;
-             transform-origin: center;
-             opacity: 1;
-             transform: scale(1);
-           ">
-    `,
-    iconSize: [75, 75],
-    iconAnchor: [30, 20],
-    className: '' 
-  });
-  
-  var computerMarker = L.marker(
-    [1.2947641755688362, 103.77451658248903], 
-    { icon: computerIcon }
-  ).addTo(map);
-
-  //Science Icon
-    var scienceIcon = L.divIcon({
-    html: `
-      <img id="science-icon" 
-           src="images/laboratory.png" 
-           style="
-             width: 60px;
-             height: 40px;
-             transition: opacity 0.8s ease, transform 0.8s ease;
-             transform-origin: center;
-             opacity: 1;
-             transform: scale(1);
-           ">
-    `,
-    iconSize: [75, 75],
-    iconAnchor: [30, 20],
-    className: '' 
-  });
-  
-  var scienceMarker = L.marker(
-    [1.2960568319104226, 103.77945184707642], 
-    { icon: scienceIcon }
-  ).addTo(map);
-
-   // Art Icon with label below
-  var artIcon = L.divIcon({
-    html: `
-      <div style="text-align:center;">
-        <img id="art-icon" 
-             src="images/palette.png" 
-             style="
-               width: 60px;
-               height: 40px;
-               transition: opacity 0.8s ease, transform 0.8s ease;
-               transform-origin: center;
-               opacity: 1;
-               transform: scale(1);
-               display: block;
-               margin: 0 auto;
-             ">
-        <span style="
-          display: block;
-          font-size: 12px;
-          font-weight: 600;
-          color: #333;
-          margin-top: 2px;
-          font-family: sans-serif;
-        ">
-          Art
-        </span>
-      </div>
-    `,
-    iconSize: [75, 75],
-    iconAnchor: [30, 20],
-    className: ''
-  });
-  
-  var artMarker = L.marker(
-    [1.2950217206868495, 103.7709492444992], 
-    { icon: artIcon }
-  ).addTo(map);
-
-  
-map.on('zoomend', function () {
-  var currentZoom = map.getZoom();
-
-  ['business-icon', 'computer-icon', 'science-icon', 'art-icon'].forEach(id => {
-    var img = document.getElementById(id);
-    if (img) {
-      if (currentZoom > 15) {
-        // Zoomed in — hide icons
-        img.style.opacity = '0';
-        img.style.transform = 'scale(0.8)';
-      } else {
-        // Zoomed out — show icons
-        img.style.opacity = '1';
-        img.style.transform = 'scale(1)';
-      }
-    }
-  });
-});
 
 
 
