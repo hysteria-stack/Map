@@ -169,8 +169,8 @@
   }).addTo(map);
 
   polygon2.bindPopup(
-    `<em><b>Mochtar Riady Building<br><img src="images/mochtarriady.jpg" alt="Mochtar Riady Building" style="width: 200px; border-radius: 8px; margin-bottom: 8px;" /><br>Ryan: </b>"A distinctive glass building where many business lectures and tutorials are conducted. One of the busier, more stressful hotspots for business students. There is a small cafe on the ground floor, which is fairly popular with students.<br><br></em>
-     <b>Stress Rating:</b><br> ${generateStressBar(4, 5)}<br>
+    `<em><b>Mochtar Riady Building, Biz 1<br><img src="images/mochtarriady.jpg" alt="Mochtar Riady Building" style="width: 200px; border-radius: 8px; margin-bottom: 8px;" /><br>Ryan: </b>"Biz 1 is a very common place that business students would visit because we would have quite a few classes here. To me, this is also the place where I spent a lot of time; apart from classes, I have had coffee chats with seniors and mentors at the Spread Cafe, project sessions at the study pods, and CCA sessions in the seminar rooms."<br><br></em>
+     <b>Stress Rating:</b><br> ${generateStressBar(3, 5)}<br>
      <b>Average Time Spent</b>: 9 hours/week`
   );
 
@@ -233,17 +233,18 @@
 
   //Shaw Foundation Building
   var polygon4 = L.polygon([ 
-  [1.2944526836252725, 103.77205893641414], 
-  [1.2942864290996847, 103.77168888806838], 
-  [1.2939914613661614, 103.7715869906978], 
-  [1.2940021874661738, 103.77154408654175], 
-  [1.2939271047652217, 103.77151190842476], 
-  [1.2938627481626281, 103.77168888806838], 
-  [1.294179168109649, 103.77181223751695], 
-  [1.29420062030802, 103.77185514167299], 
-  [1.2940719071150844, 103.77194119332853], 
-  [1.2941001598098975, 103.77201627571204], 
-  [1.2943366801449324, 103.7721406251606]
+  [1.2946889910541812, 103.77099215984346],
+  [1.2945924839522063, 103.771271109581],
+  [1.2944316387740762, 103.77121746540071],
+  [1.2944423617862661, 103.77116918563844],
+  [1.2942761550921875, 103.77111554145813],
+  [1.294195732494357, 103.7713408470154],
+  [1.2939598261927046, 103.77125501632692],
+  [1.2940616948256656, 103.77097070217134],
+  [1.2941421174277454, 103.77100288867952],
+  [1.2941903709877594, 103.77090096473695],
+  [1.2942868781050392, 103.77092242240907],
+  [1.2943083241305897, 103.7708741426468]
   ], {
     color: '#000000',
     fillColor: COLOR_YELLOW,
@@ -252,7 +253,7 @@
   }).addTo(map);
 
   polygon4.bindPopup(
-    `<em><b>Shaw Foundation Building<br>Hong Yeow: </b>"Weekly GEX1033 lectures are held here. There's an interesting map right outside the classroom made with different coloured mosses, attached with a quote by Gandhi, work of Prof TC Chang!<br><br></em>
+    `<em><b>Shaw Foundation Building<br>Hong Yeow: </b>"Weekly GEX1033 lectures are held here. There's an interesting map right outside the classrooms made with different coloured mosses, attached with a quote by Gandhi, which we got to explore during one of our GEX1003 lectures!<br><br></em>
      <b>Stress Rating:</b><br> ${generateStressBar(2, 5)}<br>
      <b>Average Time Spent</b>: 2 hours/week`
   );
@@ -299,7 +300,7 @@
   }).addTo(map);
 
   polygon5.bindPopup(
-    `<em><b>Hon Sui Sen Memorial Library<br><img src="images/hssml.jpg" alt="HSSML" style="width: 200px; border-radius: 8px; margin-bottom: 8px;" /><br>Hong Yeow: </b>"My second favourite spot to study. There's classes nearby so noise levels can be high sometimes. Recently attended a few interesting workshops here, which was pretty cool."<br><br></em>
+    `<em><b>Hon Sui Sen Memorial Library<br><img src="images/hssml.jpg" alt="HSSML" style="width: 200px; border-radius: 8px; margin-bottom: 8px;" /><br>Ryan: </b>"My friends and I would always study here before any major exams or submissions. This place is usually filled with a lot of students studying, so the atmosphere is quite tense. However, despite that, I do still have a lot of good memories with my friends here, where we would spend most of our time together in school."<br><br></em>
      <b>Stress Rating:</b><br> ${generateStressBar(3, 5)}<br>
      <b>Average Time Spent</b>: 2 hours/week`
   );
@@ -353,7 +354,7 @@
   }).addTo(map);
 
   polygon6.bindPopup(
-    `<em><b>CDE BUZZy Kitchen<br>Ryan: </b>"Had fun memories here cooking with my fellow club members. Relaxing place overall."<br><br></em>
+    `<em><b>CDE BUZZy Kitchen<br>Ryan: </b>"I was part of the NUS Bakers & Cooks CCA, and my team and I would organise culinary events here at the CDE BUZZy kitchen. I had a lot of fond memories with my CCA friends and the different participants who joined our events. This was also a form of stress relief for me, to take some time away from academics and to enjoy what I am interested in."<br><br></em>
      <b>Stress Rating:</b><br> ${generateStressBar(1, 5)}<br>
      <b>Average Time Spent</b>: 2 hours/week`
   );
@@ -394,7 +395,7 @@
   polygon7.bindPopup(
     `<em><b>University Health Centre<br>Elvia:</b>"Place to visit when falling sick 🙁 Most of the time caused by stress. Also, visiting UHC means missing class, stressed."<br><br></em>
     <b>Stress Rating:</b><br> ${generateStressBar(3, 5)}<br>
-    <b>Average Time Spent</b>: X hours/week
+    <b>Average Time Spent</b>: 0.5 hours/week
   `);
   
   polygon7.on('mouseover', function () {
@@ -549,7 +550,7 @@
   }).addTo(map);
 
   polygon11.bindPopup(
-    `<b>UTown</b><br><br><br>
+    `<em><b>UTown<br>Jolin: </b>"I have lessons with my crush here every week, so I feel very stressed out when i am with him"<br><br></em>
      <b>Stress Rating:</b><br> ${generateStressBar(5, 5)}<br>
      <b>Average Time Spent</b>: 6 hours/week`
   );
@@ -579,6 +580,7 @@
 
   polygon12.bindPopup(
     `<em><b>CoolSpot<br>Jolin: </b>"Iconic milocino sold by a young guy with photogenic memory. He remembered our orders after seeing us twice only. His milocino is extra concentrated so its very yummy."<br><br></em>
+     <b>Stress Rating:</b><br> ${generateStressBar(1, 5)}<br>
      <b>Average Time Spent</b>: 1 hours/week`
   );
 
@@ -635,7 +637,7 @@
   }).addTo(map);
 
   polygon14.bindPopup(
-    `<em><b>AS4<br>Sateiish:</b> "My friend is a cat feeder with NUS cat cafe and I follow him weekly when he feeds one of the cats at AS4."</em><br><br>
+    `<em><b>AS4<br>Sateiish:</b> "My friend is a cat feeder with NUS cat cafe and I accompany him weekly when he feeds one of the cats at AS4. We usually spend 1.5 hr a week here. The cat’s name is M33y Thai and he is in the garden at the department of social work, and is an attraction in and of himself."</em><br><br>
      <b>Stress Rating:</b><br> ${generateStressBar(1, 5)}<br>
      <b>Average Time Spent</b>: 1.5 hours/week`
   );
@@ -664,7 +666,7 @@
   }).addTo(map);
 
   polygon15.bindPopup(
-    `<em><b>Biz 2<br>Sateiish:</b> "2 of my modules are here so I spend a considerable time in Biz 2. It is more rugged looking than Biz 1 and does not feel as welcoming."</em><br><br>
+    `<em><b>Biz 2<br>Sateiish:</b> "2 of my modules are here so I spend a considerable time in Biz 2. It is more rugged looking than Biz1 as its a much older building, it looks more like FASS and does not feel as welcoming."</em><br><br>
      <b>Stress Rating:</b><br> ${generateStressBar(3, 5)}<br>
      <b>Average Time Spent</b>: 1.5 hours/week`
   );
