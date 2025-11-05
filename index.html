@@ -751,6 +751,43 @@
     this.setStyle({ fillColor: COLOR_YELLOW});
     this.closePopup();
   });
+
+  //UTown Auditorium
+  var polygon16 = L.polygon([
+      [1.3043206746022415, 103.77225279808046],
+  [1.3047389907581415, 103.77276241779329],
+  [1.304626367184547, 103.77291262149812],
+  [1.3045727369096298, 103.77291262149812],
+  [1.3045727369096298, 103.77295553684236],
+  [1.3044172091059165, 103.77315938472749],
+  [1.304411846078034, 103.77321302890779],
+  [1.3042938594616598, 103.77325594425203],
+  [1.3038701802027275, 103.77297163009645],
+  [1.3039988928965196, 103.77276778221132],
+  [1.30420805100992, 103.772891163826],
+  [1.304025708040231, 103.77270877361299]
+  ], {
+    color: '#000000',
+    fillColor: COLOR_RED,
+    fillOpacity: 0.5,
+    weight: 2
+  }).addTo(map);
+
+  polygon16.bindPopup(
+    `<em><b>UTown Auditorium<br><img src="images/utownaudi.jpg" alt="UTown Auditorium" style="width: 200px; border-radius: 8px; margin-bottom: 8px;" /><br>Ryan:</b>"I remembered back in year 1, I had a GE module held here in the UTown Auditorium. It was an interesting module on public health, but what made it memorable was that during one of the sessions, each group had to send one member up on stage to do a quick presentation. I was selected through a game of rock paper scissors and had to do the presentation. Being a year 1 and fresh in NUS, naturally that became a very stressful experience for me, but nonetheless, it was a great learning experience. "<br><br></em>
+     <b>Stress Rating:</b><br> ${generateStressBar(3, 5)}<br>
+     <b>Average Time Spent</b>: 4 hours/week`
+  );
+
+  polygon16.on('mouseover', function () {
+    this.setStyle({ fillColor: COLOR_MOUSEOVER });
+    this.openPopup();
+  });
+
+  polygon16.on('mouseout', function () {
+    this.setStyle({ fillColor: COLOR_RED});
+    this.closePopup();
+  });
   
   function createFacultyIcon(id, imgSrc, label) {
     return L.divIcon({
