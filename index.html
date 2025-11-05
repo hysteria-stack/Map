@@ -2106,27 +2106,6 @@ function setMarkerVisibility(marker, visible) {
   }
 }
 
-// === Zoom handler: shrink/fade markers if zoom > 17 ===
-map.on('zoomend', function () {
-  const currentZoom = map.getZoom();
-  facultyMarkers.forEach(marker => {
-    const wrapperId = marker.options.icon.options.html.match(/id="(.*?)\-wrapper"/)[1] + '-wrapper';
-    const wrapper = document.getElementById(wrapperId);
-    if (!wrapper) return;
-
-    // Only apply zoom effect if checkbox is checked
-    if (checkbox.checked) {
-      if (currentZoom > 17) {
-        wrapper.style.opacity = '0';
-        wrapper.style.transform = 'scale(0.8)';
-      } else {
-        wrapper.style.opacity = '1';
-        wrapper.style.transform = 'scale(1)';
-      }
-    }
-  });
-});
-
 // === Add checkbox control ===
 const toggleControl = L.control({ position: 'bottomright' });
 
@@ -2160,6 +2139,7 @@ checkbox.addEventListener('change', function() {
 
 // Initial state
 facultyMarkers.forEach(marker => setMarkerVisibility(marker, checkbox.checked));
+
 
 
   // Leaflet Draw Setup
