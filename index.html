@@ -1463,7 +1463,7 @@ var artMarker = L.marker([1.2950217206868495, 103.7709492444992], {
   icon: createFacultyIcon('art', 'images/palette.png', 'Faculty of Arts and Social Sciences')
 }).addTo(map);
 
-var engineeringMarker = L.marker([1.2972528093217126, 103.77060055732728],{
+var engineeringMarker = L.marker([1.2990654555236858, 103.771630525589],{
   icon: createFacultyIcon('engineering', 'images/engineering.png', 'Faculty of Engineering')
 }).addTo(map);
 
@@ -1490,7 +1490,7 @@ var designMarker = L.marker([1.2972528093217126, 103.77060055732728], {
 
 map.on('zoomend', function () {
   var currentZoom = map.getZoom();
-  ['business', 'computer', 'science', 'art', 'engineering','yale','dentistry', 'medicine'].forEach(id => {
+  ['business', 'computer', 'science', 'art', 'engineering','yale','dentistry', 'medicine','music','design'].forEach(id => {
     var wrapper = document.getElementById(id + '-wrapper');
     if (wrapper) {
       if (currentZoom > 16) {
