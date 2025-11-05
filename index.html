@@ -1989,171 +1989,129 @@
     this.closePopup();
   });
   
-// === Create faculty icon function ===
-function createFacultyIcon(id, imgSrc, label) {
-  return L.divIcon({
-    html: `
-      <div id="${id}-wrapper"
-           style="
-             text-align: center;
-             transition: opacity 0.8s ease, transform 0.8s ease;
-             display: inline-block;
-           ">
-        <img id="${id}-img"
-             src="${imgSrc}"
+  function createFacultyIcon(id, imgSrc, label) {
+    return L.divIcon({
+      html: `
+        <div id="${id}-wrapper"
              style="
-               width: 60px;
-               height: 40px;
-               transform-origin: center;
-               opacity: 1;
-               transform: scale(1);
-               display: block;
-               margin: 0 auto;
+               text-align: center;
+               display: inline-block;
+               transition: opacity 0.8s ease, transform 0.8s ease;
              ">
-        ${
-          label
-            ? `<div id="${id}-label"
-                    style="
-                      display: inline-block;
-                      background: white;
-                      padding: 2px 4px;
-                      border-radius: 3px;
-                      font-size: 12px;
-                      font-weight: 600;
-                      color: #333;
-                      font-family: sans-serif;
-                      margin-top: 2px;
-                      transition: opacity 0.8s ease, transform 0.8s ease;
-                    ">
-                  ${label}
-               </div>`
-            : ''
-        }
-      </div>
-    `,
-    iconSize: [75, 75],
-    iconAnchor: [30, 20],
-    className: ''
-  });
-}
-
-// === Create markers ===
-var businessMarker = L.marker([1.2929315399051828, 103.77392649650575], {
-  icon: createFacultyIcon('business', 'images/business.png', 'NUS Business School')
-}).addTo(map);
-
-var computerMarker = L.marker([1.2950751428632135, 103.773609995842], {
-  icon: createFacultyIcon('computer', 'images/pc.png', 'School of Computing')
-}).addTo(map);
-
-var scienceMarker = L.marker([1.2962283290132846, 103.77918362617494],{
-  icon: createFacultyIcon('science', 'images/laboratory.png', 'Faculty of Science')
-}).addTo(map);
-
-var artMarker = L.marker([1.2950217206868495, 103.7709492444992], {
-  icon: createFacultyIcon('art', 'images/palette.png', 'Faculty of Arts and Social Sciences')
-}).addTo(map);
-
-var engineeringMarker = L.marker([1.2990654555236858, 103.771630525589],{
-  icon: createFacultyIcon('engineering', 'images/engineering.png', 'Faculty of Engineering')
-}).addTo(map);
-
-var yaleMarker = L.marker([1.3066594845408934, 103.7728214263916], {
-  icon: createFacultyIcon('yale', 'images/friendship.png', 'Yale-NUS College')
-}).addTo(map);
-
-var dentistryMarker = L.marker([1.296941467352485, 103.78167271614076], {
-  icon: createFacultyIcon('dentistry', 'images/dental-care.png', 'Faculty of Dentistry')
-}).addTo(map);
-
-var musicMarker = L.marker([1.3022882882662243, 103.77286970615388], {
-  icon: createFacultyIcon('music', 'images/musical-note.png', 'Yong Siew Toh Conservatory of Music')
-}).addTo(map);
-
-var medicineMarker = L.marker([1.2957079021805613, 103.78103971481325], {
-  icon: createFacultyIcon('medicine', 'images/doctor.png', 'Yong Loo Lin School of Medicine')
-}).addTo(map);
-
-var designMarker = L.marker([1.2972528093217126, 103.77060055732728], {
-  icon: createFacultyIcon('design', 'images/design-thinking.png', 'School of Design and Environment')
-}).addTo(map);
-
-var museumMarker = L.marker([1.3014513603637359, 103.77252101898193], { 
-  icon: createFacultyIcon('museum', 'images/museum.png', '') 
-}).addTo(map); 
-  
-var museum1Marker = L.marker([1.3015273099900677, 103.77354025840759],{ 
-  icon: createFacultyIcon('museum1', 'images/museum1.png', '') 
-}).addTo(map); 
-  
-var firstaidMarker = L.marker([1.29911934822075, 103.77637267112733],{ 
-  icon: createFacultyIcon('firstaid', 'images/first-aid-kit.png', '') 
-}).addTo(map);
-
-// Array of markers for convenience
-const facultyMarkers = [
-  businessMarker, computerMarker, scienceMarker, artMarker,
-  engineeringMarker, yaleMarker, dentistryMarker, medicineMarker,
-  musicMarker, designMarker
-];
-
-// === Helper function to show/hide markers gradually ===
-function setMarkerVisibility(marker, visible) {
-  const wrapperId = marker.options.icon.options.html.match(/id="(.*?)\-wrapper"/)[1] + '-wrapper';
-  const wrapper = document.getElementById(wrapperId);
-  if (!wrapper) return;
-
-  if (visible) {
-    wrapper.style.display = 'inline-block'; // show first
-    setTimeout(() => {
-      wrapper.style.opacity = '1';
-      wrapper.style.transform = 'scale(1)';
-    }, 10);
-  } else {
-    wrapper.style.opacity = '0';
-    wrapper.style.transform = 'scale(0.8)';
-    setTimeout(() => {
-      wrapper.style.display = 'none'; // hide after transition
-    }, 800);
+          <img id="${id}-img"
+               src="${imgSrc}"
+               style="
+                 width: 60px;
+                 height: 40px;
+                 transform-origin: center;
+                 opacity: 1;
+                 transform: scale(1);
+                 display: block;
+                 margin: 0 auto;
+               ">
+          ${
+            label
+              ? `<div id="${id}-label"
+                      style="
+                        display: inline-block;
+                        background: white;
+                        padding: 2px 4px;
+                        border-radius: 3px;
+                        font-size: 12px;
+                        font-weight: 600;
+                        color: #333;
+                        font-family: sans-serif;
+                        margin-top: 2px;
+                        transition: opacity 0.8s ease, transform 0.8s ease;
+                      ">
+                    ${label}
+                 </div>`
+              : ''
+          }
+        </div>
+      `,
+      iconSize: [75, 75],
+      iconAnchor: [30, 20],
+      className: ''
+    });
   }
-}
-
-// === Add checkbox control ===
-const toggleControl = L.control({ position: 'bottomright' });
-
-toggleControl.onAdd = function(map) {
-  const div = L.DomUtil.create('div', 'toggle-faculty-markers');
-  div.style.background = 'white';
-  div.style.padding = '6px 10px';
-  div.style.borderRadius = '5px';
-  div.style.boxShadow = '0 1px 5px rgba(0,0,0,0.65)';
-  div.style.fontSize = '14px';
-  div.style.cursor = 'pointer';
   
-  div.innerHTML = `
-    <label style="display:flex; align-items:center; gap:4px; user-select:none;">
-      <input type="checkbox" id="toggleFaculty" checked>
-      Show Faculties
-    </label>
-  `;
-  return div;
-};
-
-toggleControl.addTo(map);
-
-// Get the checkbox element
-const checkbox = document.getElementById('toggleFaculty');
-
-// Checkbox event: fade markers in/out
-checkbox.addEventListener('change', function() {
-  facultyMarkers.forEach(marker => setMarkerVisibility(marker, this.checked));
-});
-
-// Initial state
-facultyMarkers.forEach(marker => setMarkerVisibility(marker, checkbox.checked));
-
-
-
+  // Normal faculty markers
+  var businessMarker = L.marker([1.29293, 103.77393], { icon: createFacultyIcon('business', 'images/business.png', 'NUS Business School') }).addTo(map);
+  var computerMarker = L.marker([1.29507, 103.77361], { icon: createFacultyIcon('computer', 'images/pc.png', 'School of Computing') }).addTo(map);
+  var scienceMarker = L.marker([1.29623, 103.77918], { icon: createFacultyIcon('science', 'images/laboratory.png', 'Faculty of Science') }).addTo(map);
+  var artMarker = L.marker([1.29502, 103.77095], { icon: createFacultyIcon('art', 'images/palette.png', 'Faculty of Arts and Social Sciences') }).addTo(map);
+  var engineeringMarker = L.marker([1.29907, 103.77163], { icon: createFacultyIcon('engineering', 'images/engineering.png', 'Faculty of Engineering') }).addTo(map);
+  var yaleMarker = L.marker([1.30666, 103.77282], { icon: createFacultyIcon('yale', 'images/friendship.png', 'Yale-NUS College') }).addTo(map);
+  var dentistryMarker = L.marker([1.29694, 103.78167], { icon: createFacultyIcon('dentistry', 'images/dental-care.png', 'Faculty of Dentistry') }).addTo(map);
+  var medicineMarker = L.marker([1.29571, 103.78104], { icon: createFacultyIcon('medicine', 'images/doctor.png', 'Yong Loo Lin School of Medicine') }).addTo(map);
+  var musicMarker = L.marker([1.30229, 103.77287], { icon: createFacultyIcon('music', 'images/musical-note.png', 'Yong Siew Toh Conservatory of Music') }).addTo(map);
+  var designMarker = L.marker([1.29725, 103.77060], { icon: createFacultyIcon('design', 'images/design-thinking.png', 'School of Design and Environment') }).addTo(map);
+  
+  // Special fixed-size markers
+  var museumMarker = L.marker([1.30145, 103.77252], { icon: createFacultyIcon('museum', 'images/museum.png', ''), noScale: true }).addTo(map);
+  var museum1Marker = L.marker([1.30153, 103.77354], { icon: createFacultyIcon('museum1', 'images/museum1.png', ''), noScale: true }).addTo(map);
+  var firstaidMarker = L.marker([1.29912, 103.77637], { icon: createFacultyIcon('firstaid', 'images/first-aid-kit.png', ''), noScale: true }).addTo(map);
+  
+  // Array of all markers
+  const facultyMarkers = [
+    businessMarker, computerMarker, scienceMarker, artMarker,
+    engineeringMarker, yaleMarker, dentistryMarker, medicineMarker,
+    musicMarker, designMarker, museumMarker, museum1Marker, firstaidMarker
+  ];
+  
+  // Add toggle checkbox control
+  const toggleControl = L.control({ position: 'bottomright' });
+  toggleControl.onAdd = function(map) {
+    const div = L.DomUtil.create('div', 'toggle-faculty-markers');
+    div.style.background = 'white';
+    div.style.padding = '6px 10px';
+    div.style.borderRadius = '5px';
+    div.style.boxShadow = '0 1px 5px rgba(0,0,0,0.65)';
+    div.style.fontSize = '14px';
+    div.style.cursor = 'pointer';
+    
+    div.innerHTML = `
+      <label style="display:flex; align-items:center; gap:4px; user-select:none;">
+        <input type="checkbox" id="toggleFaculty" checked>
+        Show Faculties
+      </label>
+    `;
+    return div;
+  };
+  toggleControl.addTo(map);
+  
+  // Toggle show/hide with smooth fade
+  const checkbox = document.getElementById('toggleFaculty');
+  checkbox.addEventListener('change', function() {
+    const visible = this.checked;
+    
+    facultyMarkers.forEach(marker => {
+      const wrapper = document.getElementById(marker.options.icon.options.id + '-wrapper');
+      if (!wrapper) return;
+  
+      wrapper.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+      
+      if (marker.options.noScale) {
+        // Only fade
+        wrapper.style.opacity = visible ? '1' : '0';
+        wrapper.style.transform = 'scale(1)';
+      } else {
+        // Fade and scale
+        wrapper.style.opacity = visible ? '1' : '0';
+        wrapper.style.transform = visible ? 'scale(1)' : 'scale(0.8)';
+      }
+  
+      // Optional: remove from map after fade out to avoid pointer events
+      if (!visible) {
+        setTimeout(() => {
+          map.removeLayer(marker);
+        }, 800); // matches transition duration
+      } else {
+        marker.addTo(map);
+      }
+    });
+  });
   // Leaflet Draw Setup
   var drawnItems = new L.FeatureGroup();
   map.addLayer(drawnItems);
