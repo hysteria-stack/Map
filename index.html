@@ -2081,17 +2081,17 @@ var libraryMarker = L.marker([1.2966895092049802, 103.77318084239961], {
   icon: createFacultyIcon('library', 'images/library.png', '')
 }).addTo(map);
 
-// var museumMarker = L.marker([1.3014513603637359, 103.77252101898193], {
-//   icon: createFacultyIcon('museum', 'images/museum.png', '')
-// }).addTo(map);
+var museumMarker = L.marker([1.3014513603637359, 103.77252101898193], {
+  icon: createFacultyIcon('museum', 'images/museum.png', '')
+}).addTo(map);
 
-// var museum1Marker = L.marker([1.3015273099900677, 103.77354025840759],{
-//   icon: createFacultyIcon('museum1', 'images/museum1.png', '')
-// }).addTo(map);
+var museum1Marker = L.marker([1.3015273099900677, 103.77354025840759],{
+  icon: createFacultyIcon('museum1', 'images/museum1.png', '')
+}).addTo(map);
 
-// var firstaidMarker = L.marker([1.29911934822075, 103.77637267112733],{
-//   icon: createFacultyIcon('firstaid', 'images/first-aid-kit.png', '')
-// }).addTo(map);
+var firstaidMarker = L.marker([1.29911934822075, 103.77637267112733],{
+  icon: createFacultyIcon('firstaid', 'images/first-aid-kit.png', '')
+}).addTo(map);
 
 map.on('zoomend', function () {
   var currentZoom = map.getZoom();
@@ -2109,11 +2109,37 @@ map.on('zoomend', function () {
   });
 });
 
+  // Array of all your markers
+const facultyMarkers = [
+  businessMarker, computerMarker, scienceMarker, artMarker,
+  engineeringMarker, yaleMarker, dentistryMarker, medicineMarker,
+  musicMarker, designMarker, libraryMarker, museumMarker,
+  museum1Marker, firstaidMarker
+];
 
+// Add a custom control
+const toggleControl = L.control({ position: 'bottomright' });
 
+toggleControl.onAdd = function(map) {
+  const div = L.DomUtil.create('div', 'toggle-faculty-markers');
+  div.style.background = 'white';
+  div.style.padding = '6px 10px';
+  div.style.borderRadius = '5px';
+  div.style.boxShadow = '0 1px 5px rgba(0,0,0,0.65)';
+  div.style.fontSize = '14px';
+  div.style.cursor = 'pointer';
+  
+  div.innerHTML = `
+    <label style="display:flex; align-items:center; gap:4px; user-select:none;">
+      <input type="checkbox" id="toggleFaculty" checked>
+      Show Faculties
+    </label>
+  `;
 
+  return div;
+};
 
-
+toggleControl.addTo(map);
 
   // Leaflet Draw Setup
   var drawnItems = new L.FeatureGroup();
@@ -2157,7 +2183,7 @@ map.on('zoomend', function () {
       copyToClipboard(result);
       console.log("Copied Polygon Coordinates:\n", result);
     });
-  
+    
     function copyToClipboard(text) {
       navigator.clipboard.writeText(text).then(function () {
         showNotice();
@@ -2174,39 +2200,39 @@ map.on('zoomend', function () {
       }, 2000);
     }
 
-      const legend = L.control({ position: 'bottomright' });
-legend.onAdd = function () {
-  const div = L.DomUtil.create('div', 'info legend');
-  div.innerHTML = `
-    <b>Stress Levels</b><br>
-    <i style="background:${COLOR_GREEN};width:18px;height:18px;display:inline-block;margin-right:5px;border-radius:3px;"></i> Not Stressful<br>
-    <i style="background:${COLOR_YELLOW};width:18px;height:18px;display:inline-block;margin-right:5px;border-radius:3px;"></i> Moderately Stressful<br>
-    <i style="background:${COLOR_RED};width:18px;height:18px;display:inline-block;margin-right:5px;border-radius:3px;"></i> Very Stressful
-    <hr style="margin:6px 0;border:none;border-top:1px solid #ccc;">
-
-    <b>Borders</b><br>
-    <i style="background:#798df2;width:18px;height:3px;display:inline-block;margin-right:5px;border:1px solid black;"></i> Faculty Areas<br>
-    <i style="background:#D4AF37;width:18px;height:3px;display:inline-block;margin-right:5px;border:1px solid black;"></i> Residences<br>
-    <i style="background:#f279e8;width:18px;height:3px;display:inline-block;margin-right:5px;border:1px solid black;"></i> Facilities
-
-    
-    <hr style="margin:6px 0;border:none;border-top:1px solid #ccc;">
-    <small style="color:#555;display:block;text-align:left;">
-      <em>Note:</em> Icons indicate approximate faculty locations.
-    </small>
-  `;
-
-  div.style.background = 'white';
-  div.style.padding = '8px';
-  div.style.borderRadius = '5px';
-  div.style.fontFamily = 'sans-serif';
-  div.style.fontSize = '13px';
-  div.style.lineHeight = '22px';
-  div.style.boxShadow = '0 0 5px rgba(0,0,0,0.3)';
-
-  return div;
-};
-legend.addTo(map);
+    const legend = L.control({ position: 'bottomright' });
+    legend.onAdd = function () {
+    const div = L.DomUtil.create('div', 'info legend');
+    div.innerHTML = `
+      <b>Stress Levels</b><br>
+      <i style="background:${COLOR_GREEN};width:18px;height:18px;display:inline-block;margin-right:5px;border-radius:3px;"></i> Not Stressful<br>
+      <i style="background:${COLOR_YELLOW};width:18px;height:18px;display:inline-block;margin-right:5px;border-radius:3px;"></i> Moderately Stressful<br>
+      <i style="background:${COLOR_RED};width:18px;height:18px;display:inline-block;margin-right:5px;border-radius:3px;"></i> Very Stressful
+      <hr style="margin:6px 0;border:none;border-top:1px solid #ccc;">
+  
+      <b>Borders</b><br>
+      <i style="background:#798df2;width:18px;height:3px;display:inline-block;margin-right:5px;border:1px solid black;"></i> Faculty Areas<br>
+      <i style="background:#D4AF37;width:18px;height:3px;display:inline-block;margin-right:5px;border:1px solid black;"></i> Residences<br>
+      <i style="background:#f279e8;width:18px;height:3px;display:inline-block;margin-right:5px;border:1px solid black;"></i> Facilities
+  
+      
+      <hr style="margin:6px 0;border:none;border-top:1px solid #ccc;">
+      <small style="color:#555;display:block;text-align:left;">
+        <em>Note:</em> Icons indicate approximate faculty locations.
+      </small>
+    `;
+  
+    div.style.background = 'white';
+    div.style.padding = '8px';
+    div.style.borderRadius = '5px';
+    div.style.fontFamily = 'sans-serif';
+    div.style.fontSize = '13px';
+    div.style.lineHeight = '22px';
+    div.style.boxShadow = '0 0 5px rgba(0,0,0,0.3)';
+  
+    return div;
+  };
+  legend.addTo(map);
 
   </script> 
 </body> 
