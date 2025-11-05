@@ -1317,55 +1317,62 @@
   });
   
   function createFacultyIcon(id, imgSrc, label) {
-    return L.divIcon({
-      html: `
-        <div id="${id}-wrapper" style="text-align:center;transition:opacity 0.8s ease, transform 0.8s ease;">
-          <img id="${id}-img"
-               src="${imgSrc}"
-               style="
-                 width: 60px;
-                 height: 40px;
-                 transform-origin: center;
-                 opacity: 1;
-                 transform: scale(1);
-                 display: block;
-                 margin: 0 auto;
-               ">
-          ${label ? `<span style="
-            display: block;
-            font-size: 12px;
-            font-weight: 600;
-            color: #333;
-            margin-top: 2px;
-            font-family: sans-serif;
-          ">${label}</span>` : ''}
-        </div>
-      `,
-      iconSize: [75, 75],
-      iconAnchor: [30, 20],
-      className: ''
-    });
-  }
-  
-  var businessMarker = L.marker([1.2929315399051828, 103.77392649650575], {
-    icon: createFacultyIcon('business', 'images/business.png', 'NUS Business School')
-  }).addTo(map);
-  
-  var computerMarker = L.marker([1.2950751428632135, 103.773609995842], {
-    icon: createFacultyIcon('computer', 'images/pc.png', 'School of Computing')
-  }).addTo(map);
-  
-  var scienceMarker = L.marker([1.2968074113133805, 103.7802028656006], {
-    icon: createFacultyIcon('science', 'images/laboratory.png', 'Faculty of Science')
-  }).addTo(map);
-  
-  var artMarker = L.marker([1.2950217206868495, 103.7709492444992], {
-    icon: createFacultyIcon('art', 'images/palette.png', 'Faculty of Arts and Social Sciences')
-  }).addTo(map);
+  return L.divIcon({
+    html: `
+      <div id="${id}-wrapper" 
+           style="
+             text-align: center;
+             transition: opacity 0.8s ease, transform 0.8s ease;
+           ">
+        <img id="${id}-img"
+             src="${imgSrc}"
+             style="
+               width: 60px;
+               height: 40px;
+               transform-origin: center;
+               opacity: 1;
+               transform: scale(1);
+               display: block;
+               margin: 0 auto;
+             ">
+        ${label ? `<span style="
+          display: block;
+          font-size: 12px;
+          font-weight: 600;
+          color: #333;
+          margin-top: 2px;
+          font-family: sans-serif;
+          white-space: nowrap;       /* ✅ keeps text in one line */
+          overflow: hidden;          /* prevents overflow if too long */
+          text-overflow: ellipsis;   /* adds '...' if text is too long */
+        ">${label}</span>` : ''}
+      </div>
+    `,
+    iconSize: [75, 75],
+    iconAnchor: [30, 20],
+    className: ''
+  });
+}
+var businessMarker = L.marker([1.2929315399051828, 103.77392649650575], {
+  icon: createFacultyIcon('business', 'images/business.png', 'NUS Business School')
+}).addTo(map);
 
-  var engineeringMarker = L.marker([1.3003738639522173, 103.77127647399904], {
-    icon: createFacultyIcon('engineering', 'images/adjustable-wrench.png', 'School of Design and Environment')
-  }).addTo(map);
+var computerMarker = L.marker([1.2950751428632135, 103.773609995842], {
+  icon: createFacultyIcon('computer', 'images/pc.png', 'School of Computing')
+}).addTo(map);
+
+var scienceMarker = L.marker([1.2968074113133805, 103.7802028656006], {
+  icon: createFacultyIcon('science', 'images/laboratory.png', 'Faculty of Science')
+}).addTo(map);
+
+var artMarker = L.marker([1.2950217206868495, 103.7709492444992], {
+  icon: createFacultyIcon('art', 'images/palette.png', 'Faculty of Arts and Social Sciences')
+}).addTo(map);
+
+var engineeringMarker = L.marker([1.3003738639522173, 103.77127647399904], {
+  icon: createFacultyIcon('engineering', 'images/adjustable-wrench.png', 'School of Design and Environment')
+}).addTo(map);
+
   
   map.on('zoomend', function () {
     var currentZoom = map.getZoom();
