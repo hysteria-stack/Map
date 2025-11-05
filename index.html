@@ -856,6 +856,43 @@
     this.setStyle({ fillColor: COLOR_GREEN});
     this.closePopup();
   });
+
+  //E5
+  var polygon19 = L.polygon([
+  [1.2982389332396271, 103.77142667770386],
+  [1.2981853182586107, 103.77154469490053],
+  [1.2981531492694565, 103.77153396606447],
+  [1.2981531492694565, 103.77159833908082],
+  [1.2978046518606505, 103.77176463603975],
+  [1.2976759758821892, 103.77149641513826],
+  [1.297852905350883, 103.77141058444978],
+  [1.2978636283485951, 103.77138376235963],
+  [1.2977885673637197, 103.77134621143342],
+  [1.2978100133596147, 103.7712872028351],
+  [1.2978797128450679, 103.77131402492525],
+  [1.297895797341439, 103.771271109581]
+  ], {
+    color: '#000000',
+    fillColor: COLOR_RED,
+    fillOpacity: 0.5,
+    weight: 2
+  }).addTo(map);
+
+  polygon19.bindPopup(
+    `<em><b>E5<br><img src="images/e5.jpg" alt="E5" style="width: 200px; border-radius: 8px; margin-bottom: 8px;" /><br>Hong Yeow: </b>"E5's a long walkway with lots of tables. People often study or work on group projects over here. Consultations with lecturers and professors typically happen here as well, since it is of close proximity to their offices. It always gets my stress levels up whenever I walk past"<br><br></em>
+     <b>Stress Rating:</b><br> ${generateStressBar(4, 5)}<br>
+     <b>Average Time Spent</b>: 0.25 hours/week`
+  );
+
+  polygon19.on('mouseover', function () {
+    this.setStyle({ fillColor: COLOR_MOUSEOVER });
+    this.openPopup();
+  });
+
+  polygon19.on('mouseout', function () {
+    this.setStyle({ fillColor: COLOR_RED});
+    this.closePopup();
+  });
   
   function createFacultyIcon(id, imgSrc, label) {
     return L.divIcon({
