@@ -789,7 +789,7 @@
     this.closePopup();
   });
 
-    //Valour House
+  //Valour House
   var polygon17 = L.polygon([
   [1.3008887971796022, 103.77451658248903],
   [1.300642168516196, 103.77532660961153],
@@ -816,6 +816,43 @@
   });
 
   polygon17.on('mouseout', function () {
+    this.setStyle({ fillColor: COLOR_GREEN});
+    this.closePopup();
+  });
+
+  //Techno Edge
+  var polygon18 = L.polygon([
+  [1.2982389332396271, 103.77142667770386],
+  [1.2981853182586107, 103.77154469490053],
+  [1.2981531492694565, 103.77153396606447],
+  [1.2981531492694565, 103.77159833908082],
+  [1.2978046518606505, 103.77176463603975],
+  [1.2976759758821892, 103.77149641513826],
+  [1.297852905350883, 103.77141058444978],
+  [1.2978636283485951, 103.77138376235963],
+  [1.2977885673637197, 103.77134621143342],
+  [1.2978100133596147, 103.7712872028351],
+  [1.2978797128450679, 103.77131402492525],
+  [1.297895797341439, 103.771271109581]
+  ], {
+    color: '#000000',
+    fillColor: COLOR_GREEN,
+    fillOpacity: 0.5,
+    weight: 2
+  }).addTo(map);
+
+  polygon18.bindPopup(
+    `<em><b>Techno Edge<br><img src="images/utownaudi.jpg" alt="Techno Edge" style="width: 200px; border-radius: 8px; margin-bottom: 8px;" /><br>Hong Yeow: </b>"I heard from a friend from one of my courses that this canteen's hands down the best across the NUS campus. I didn't believe him until I went there with a couple of friends. The food made my stress levels from studying melt right away. It is extremely crowded during lunchtime, so be there early."<br><br></em>
+     <b>Stress Rating:</b><br> ${generateStressBar(1, 5)}<br>
+     <b>Average Time Spent</b>: 1 hours/week`
+  );
+
+  polygon18.on('mouseover', function () {
+    this.setStyle({ fillColor: COLOR_MOUSEOVER });
+    this.openPopup();
+  });
+
+  polygon18.on('mouseout', function () {
     this.setStyle({ fillColor: COLOR_GREEN});
     this.closePopup();
   });
