@@ -2094,16 +2094,20 @@ var libraryMarker = L.marker([1.2966895092049802, 103.77318084239961], {
   icon: createFacultyIcon('library', 'images/library.png', '') 
 }).addTo(map);
 
-// Array of markers for convenience
+// === Marker groups ===
 const facultyMarkers = [
   businessMarker, computerMarker, scienceMarker, artMarker,
   engineeringMarker, yaleMarker, dentistryMarker, medicineMarker,
   musicMarker, designMarker
 ];
 
+const otherMarkers = [museumMarker, museum1Marker, firstaidMarker, libraryMarker];
+
 // === Helper function to show/hide markers gradually ===
 function setMarkerVisibility(marker, visible) {
-  const wrapperId = marker.options.icon.options.html.match(/id="(.*?)\-wrapper"/)[1] + '-wrapper';
+  const match = marker.options.icon.options.html.match(/id="(.*?)\-wrapper"/);
+  if (!match) return;
+  const wrapperId = match[1] + '-wrapper';
   const wrapper = document.getElementById(wrapperId);
   if (!wrapper) return;
 
@@ -2122,39 +2126,55 @@ function setMarkerVisibility(marker, visible) {
   }
 }
 
-// === Add checkbox control ===
+// === Add a single control with two checkboxes ===
 const toggleControl = L.control({ position: 'bottomright' });
 
 toggleControl.onAdd = function(map) {
-  const div = L.DomUtil.create('div', 'toggle-faculty-markers');
+  const div = L.DomUtil.create('div', 'toggle-markers');
+  
+  // Style
   div.style.background = 'white';
-  div.style.padding = '6px 10px';
-  div.style.borderRadius = '5px';
+  div.style.padding = '8px 12px';
+  div.style.borderRadius = '6px';
   div.style.boxShadow = '0 1px 5px rgba(0,0,0,0.65)';
   div.style.fontSize = '14px';
   div.style.cursor = 'pointer';
+  div.style.userSelect = 'none';
   
+  // HTML: two checkboxes
   div.innerHTML = `
-    <label style="display:flex; align-items:center; gap:4px; user-select:none;">
-      <input type="checkbox" id="toggleFaculty" checked>
-      Show Faculties
-    </label>
+    <div style="margin-bottom:4px;">
+      <label style="display:flex; align-items:center; gap:4px;">
+        <input type="checkbox" id="toggleFaculty" checked>
+        Show Faculties
+      </label>
+    </div>
+    <div>
+      <label style="display:flex; align-items:center; gap:4px;">
+        <input type="checkbox" id="toggleOther" checked>
+        Show Other Locations
+      </label>
+    </div>
   `;
+  
   return div;
 };
 
 toggleControl.addTo(map);
 
-// Get the checkbox element
-const checkbox = document.getElementById('toggleFaculty');
-
-// Checkbox event: fade markers in/out
-checkbox.addEventListener('change', function() {
+// === Event listeners for checkboxes ===
+document.getElementById('toggleFaculty').addEventListener('change', function() {
   facultyMarkers.forEach(marker => setMarkerVisibility(marker, this.checked));
 });
 
-// Initial state
-facultyMarkers.forEach(marker => setMarkerVisibility(marker, checkbox.checked));
+document.getElementById('toggleOther').addEventListener('change', function() {
+  otherMarkers.forEach(marker => setMarkerVisibility(marker, this.checked));
+});
+
+// === Initial state ===
+facultyMarkers.forEach(marker => setMarkerVisibility(marker, true));
+otherMarkers.forEach(marker => setMarkerVisibility(marker, true));
+
 
   // Leaflet Draw Setup
   var drawnItems = new L.FeatureGroup();
