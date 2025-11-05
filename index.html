@@ -1349,8 +1349,8 @@ function createFacultyIcon(id, imgSrc, label) {
         ">${label}</span>` : ''}
       </div>
     `,
-    iconSize: null,         // Let Leaflet size it automatically
-    iconAnchor: [30, 20],   // you can tweak if icons look off, e.g. [30, 30]
+    iconSize: [100, 60],   // ✅ fixes anchor misalignment (enough room for long text)
+    iconAnchor: [50, 60],  // ✅ centers the marker beneath its coordinate
     className: ''
   });
 }
@@ -1375,22 +1375,23 @@ var engineeringMarker = L.marker([1.3003738639522173, 103.77127647399904], {
   icon: createFacultyIcon('engineering', 'images/adjustable-wrench.png', 'School of Design and Environment')
 }).addTo(map);
 
-  
-  map.on('zoomend', function () {
-    var currentZoom = map.getZoom();
-    ['business', 'computer', 'science', 'art','engineering'].forEach(id => {
-      var wrapper = document.getElementById(id + '-wrapper');
-      if (wrapper) {
-        if (currentZoom > 16) {
-          wrapper.style.opacity = '0';
-          wrapper.style.transform = 'scale(0.8)';
-        } else {
-          wrapper.style.opacity = '1';
-          wrapper.style.transform = 'scale(1)';
-        }
+// 🎯 Zoom behavior stays the same
+map.on('zoomend', function () {
+  var currentZoom = map.getZoom();
+  ['business', 'computer', 'science', 'art', 'engineering'].forEach(id => {
+    var wrapper = document.getElementById(id + '-wrapper');
+    if (wrapper) {
+      if (currentZoom > 16) {
+        wrapper.style.opacity = '0';
+        wrapper.style.transform = 'scale(0.8)';
+      } else {
+        wrapper.style.opacity = '1';
+        wrapper.style.transform = 'scale(1)';
       }
-    });
+    }
   });
+});
+
 
 
 
