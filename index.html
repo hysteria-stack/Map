@@ -451,7 +451,7 @@
   
   //Faculty of Engineering
   var unshadedPolygon10 = L.polygon([
-  [1.3004914696385446, 103.77123820242268],
+    [1.3004914696385446, 103.77123820242268],
   [1.3003359415829567, 103.77171554240371],
   [1.3001965026284195, 103.77176381273885],
   [1.30015359833315, 103.77172090577426],
@@ -1455,7 +1455,7 @@ var computerMarker = L.marker([1.2950751428632135, 103.773609995842], {
   icon: createFacultyIcon('computer', 'images/pc.png', 'School of Computing')
 }).addTo(map);
 
-var scienceMarker = L.marker([1.2962713228675544, 103.77932846546173], {
+var scienceMarker = L.marker([1.2962283290132846, 103.77918362617494],{
   icon: createFacultyIcon('science', 'images/laboratory.png', 'Faculty of Science')
 }).addTo(map);
 
@@ -1463,21 +1463,30 @@ var artMarker = L.marker([1.2950217206868495, 103.7709492444992], {
   icon: createFacultyIcon('art', 'images/palette.png', 'Faculty of Arts and Social Sciences')
 }).addTo(map);
 
-var engineeringMarker = L.marker([1.3003738639522173, 103.77127647399904], {
-  icon: createFacultyIcon('engineering', 'images/adjustable-wrench.png', 'School of Design and Environment')
+var engineeringMarker = L.marker([1.2972528093217126, 103.77060055732728],{
+  icon: createFacultyIcon('engineering', 'images/engineering.png', 'Faculty of Engineering')
 }).addTo(map);
 
 var yaleMarker = L.marker([1.3066594845408934, 103.7728214263916], {
-  icon: createFacultyIcon('yale', 'images/yalenus.jpg', 'Yale-NUS College')
+  icon: createFacultyIcon('yale', 'images/friendship.png', 'Yale-NUS College')
 }).addTo(map);
 
 var dentistryMarker = L.marker([1.296941467352485, 103.78167271614076], {
   icon: createFacultyIcon('dentistry', 'images/tooth.png', 'Faculty of Dentistry')
 }).addTo(map);
 
+var musicMarker = L.marker([1.3022882882662243, 103.77286970615388], {
+  icon: createFacultyIcon('music', 'images/musical-note.png', 'Yong Siew Toh Conservatory of Music')
+}).addTo(map);
+
 var medicineMarker = L.marker([1.295997843036584, 103.78148496150972], {
   icon: createFacultyIcon('medicine', 'images/doctor.png', 'Yong Loo Lin School of Medicine')
 }).addTo(map);
+
+var designMarker = L.marker([1.2972528093217126, 103.77060055732728], {
+  icon: createFacultyIcon('design', 'images/design-thinking.png', 'School of Design and Environment')
+}).addTo(map);
+
 
 map.on('zoomend', function () {
   var currentZoom = map.getZoom();
