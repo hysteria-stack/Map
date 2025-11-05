@@ -8,7 +8,7 @@
   <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet-draw/dist/leaflet.draw.css" />
-
+  
   <style>
     html, body, #map {
       height: 100%;
@@ -88,6 +88,26 @@
   
     return bar;
   }
+
+  var unshadedPolygon = L.polygon([
+  [1.294013411946688, 103.77466142177583],
+  [1.2940402765715355, 103.77472043037416],
+  [1.2935362948695892, 103.77491891384126],
+  [1.2934451492319485, 103.77516567707063],
+  [1.2931180972111316, 103.77507448196413],
+  [1.2922343522745345, 103.77440929412843],
+  [1.292249440044901, 103.77424299716951],
+  [1.2923566702570015, 103.77415716648103],
+  [1.2923245011938547, 103.77406060695648],
+  [1.2924424544234123, 103.77376556396486],
+  [1.2930697510522453, 103.77307355403902],
+  [1.2937667471246752, 103.77366364002229]
+  ], {
+    color: '#000000',
+    weight: 2,
+    fillOpacity: 0
+  }).addTo(map);
+
   
   //Central Library
   var polygon1 = L.polygon([
@@ -747,18 +767,7 @@
       }
     });
   });
-  var unshadedPolygon = L.polygon([
-  [1.296, 103.774],
-  [1.297, 103.774],
-  [1.297, 103.775],
-  [1.296, 103.775]
-], {
-  color: '#000000', // border color
-  weight: 2,        // border thickness
-  fillOpacity: 0     // no fill
-}).addTo(map);
 
-unshadedPolygon.bindPopup("This polygon has no shading!");
 
 
 
