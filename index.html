@@ -1493,7 +1493,7 @@ map.on('zoomend', function () {
   ['business', 'computer', 'science', 'art', 'engineering','yale','dentistry', 'medicine','music','design'].forEach(id => {
     var wrapper = document.getElementById(id + '-wrapper');
     if (wrapper) {
-      if (currentZoom > 16) {
+      if (currentZoom > 15) {
         wrapper.style.opacity = '0';
         wrapper.style.transform = 'scale(0.8)';
       } else {
