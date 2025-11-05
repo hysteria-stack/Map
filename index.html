@@ -2141,6 +2141,19 @@ toggleControl.onAdd = function(map) {
 
 toggleControl.addTo(map);
 
+  const checkbox = document.getElementById('toggleFaculty');
+
+checkbox.addEventListener('change', function() {
+  if (this.checked) {
+    // Show all markers
+    facultyMarkers.forEach(marker => marker.addTo(map));
+  } else {
+    // Remove all markers
+    facultyMarkers.forEach(marker => map.removeLayer(marker));
+  }
+});
+
+
   // Leaflet Draw Setup
   var drawnItems = new L.FeatureGroup();
   map.addLayer(drawnItems);
