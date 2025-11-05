@@ -2095,7 +2095,7 @@ var firstaidMarker = L.marker([1.29911934822075, 103.77637267112733],{
 
 map.on('zoomend', function () {
   var currentZoom = map.getZoom();
-  ['business', 'computer', 'science', 'art', 'engineering','yale','dentistry', 'medicine','music','design','library','museum','museum1','firstaid'].forEach(id => {
+  ['business', 'computer', 'science', 'art', 'engineering','yale','dentistry', 'medicine','music','design'].forEach(id => {
     var wrapper = document.getElementById(id + '-wrapper');
     if (wrapper) {
       if (currentZoom > 17) {
@@ -2113,8 +2113,7 @@ map.on('zoomend', function () {
 const facultyMarkers = [
   businessMarker, computerMarker, scienceMarker, artMarker,
   engineeringMarker, yaleMarker, dentistryMarker, medicineMarker,
-  musicMarker, designMarker, libraryMarker, museumMarker,
-  museum1Marker, firstaidMarker
+  musicMarker, designMarker
 ];
 
 // Add a custom control
