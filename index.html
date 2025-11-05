@@ -1989,6 +1989,7 @@
     this.closePopup();
   });
   
+// === Create faculty icon function ===
 function createFacultyIcon(id, imgSrc, label) {
   return L.divIcon({
     html: `
@@ -2036,7 +2037,7 @@ function createFacultyIcon(id, imgSrc, label) {
   });
 }
 
-
+// === Create markers ===
 var businessMarker = L.marker([1.2929315399051828, 103.77392649650575], {
   icon: createFacultyIcon('business', 'images/business.png', 'NUS Business School')
 }).addTo(map);
@@ -2077,27 +2078,44 @@ var designMarker = L.marker([1.2972528093217126, 103.77060055732728], {
   icon: createFacultyIcon('design', 'images/design-thinking.png', 'School of Design and Environment')
 }).addTo(map);
 
-var libraryMarker = L.marker([1.2966895092049802, 103.77318084239961], {
-  icon: createFacultyIcon('library', 'images/library.png', '')
-}).addTo(map);
+// Array of markers for convenience
+const facultyMarkers = [
+  businessMarker, computerMarker, scienceMarker, artMarker,
+  engineeringMarker, yaleMarker, dentistryMarker, medicineMarker,
+  musicMarker, designMarker
+];
 
-var museumMarker = L.marker([1.3014513603637359, 103.77252101898193], {
-  icon: createFacultyIcon('museum', 'images/museum.png', '')
-}).addTo(map);
+// === Helper function to show/hide markers gradually ===
+function setMarkerVisibility(marker, visible) {
+  const wrapperId = marker.options.icon.options.html.match(/id="(.*?)\-wrapper"/)[1] + '-wrapper';
+  const wrapper = document.getElementById(wrapperId);
+  if (!wrapper) return;
 
-var museum1Marker = L.marker([1.3015273099900677, 103.77354025840759],{
-  icon: createFacultyIcon('museum1', 'images/museum1.png', '')
-}).addTo(map);
+  if (visible) {
+    wrapper.style.display = 'inline-block'; // show first
+    setTimeout(() => {
+      wrapper.style.opacity = '1';
+      wrapper.style.transform = 'scale(1)';
+    }, 10);
+  } else {
+    wrapper.style.opacity = '0';
+    wrapper.style.transform = 'scale(0.8)';
+    setTimeout(() => {
+      wrapper.style.display = 'none'; // hide after transition
+    }, 800);
+  }
+}
 
-var firstaidMarker = L.marker([1.29911934822075, 103.77637267112733],{
-  icon: createFacultyIcon('firstaid', 'images/first-aid-kit.png', '')
-}).addTo(map);
-
+// === Zoom handler: shrink/fade markers if zoom > 17 ===
 map.on('zoomend', function () {
-  var currentZoom = map.getZoom();
-  ['business', 'computer', 'science', 'art', 'engineering','yale','dentistry', 'medicine','music','design'].forEach(id => {
-    var wrapper = document.getElementById(id + '-wrapper');
-    if (wrapper) {
+  const currentZoom = map.getZoom();
+  facultyMarkers.forEach(marker => {
+    const wrapperId = marker.options.icon.options.html.match(/id="(.*?)\-wrapper"/)[1] + '-wrapper';
+    const wrapper = document.getElementById(wrapperId);
+    if (!wrapper) return;
+
+    // Only apply zoom effect if checkbox is checked
+    if (checkbox.checked) {
       if (currentZoom > 17) {
         wrapper.style.opacity = '0';
         wrapper.style.transform = 'scale(0.8)';
@@ -2109,14 +2127,7 @@ map.on('zoomend', function () {
   });
 });
 
-  // Array of all your markers
-const facultyMarkers = [
-  businessMarker, computerMarker, scienceMarker, artMarker,
-  engineeringMarker, yaleMarker, dentistryMarker, medicineMarker,
-  musicMarker, designMarker
-];
-
-// Add a custom control
+// === Add checkbox control ===
 const toggleControl = L.control({ position: 'bottomright' });
 
 toggleControl.onAdd = function(map) {
@@ -2134,23 +2145,21 @@ toggleControl.onAdd = function(map) {
       Show Faculties
     </label>
   `;
-
   return div;
 };
 
 toggleControl.addTo(map);
 
-  const checkbox = document.getElementById('toggleFaculty');
+// Get the checkbox element
+const checkbox = document.getElementById('toggleFaculty');
 
+// Checkbox event: fade markers in/out
 checkbox.addEventListener('change', function() {
-  if (this.checked) {
-    // Show all markers
-    facultyMarkers.forEach(marker => marker.addTo(map));
-  } else {
-    // Remove all markers
-    facultyMarkers.forEach(marker => map.removeLayer(marker));
-  }
+  facultyMarkers.forEach(marker => setMarkerVisibility(marker, this.checked));
 });
+
+// Initial state
+facultyMarkers.forEach(marker => setMarkerVisibility(marker, checkbox.checked));
 
 
   // Leaflet Draw Setup
