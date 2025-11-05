@@ -1342,9 +1342,7 @@
           color: #333;
           margin-top: 2px;
           font-family: sans-serif;
-          white-space: nowrap;       /* ✅ keeps text in one line */
-          overflow: hidden;          /* prevents overflow if too long */
-          text-overflow: ellipsis;   /* adds '...' if text is too long */
+          white-space: nowrap;   /* ✅ keeps text in one line */
         ">${label}</span>` : ''}
       </div>
     `,
@@ -1372,7 +1370,6 @@ var artMarker = L.marker([1.2950217206868495, 103.7709492444992], {
 var engineeringMarker = L.marker([1.3003738639522173, 103.77127647399904], {
   icon: createFacultyIcon('engineering', 'images/adjustable-wrench.png', 'School of Design and Environment')
 }).addTo(map);
-
   
   map.on('zoomend', function () {
     var currentZoom = map.getZoom();
