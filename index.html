@@ -788,6 +788,37 @@
     this.setStyle({ fillColor: COLOR_RED});
     this.closePopup();
   });
+
+    //Valour House
+  var polygon17 = L.polygon([
+  [1.3008887971796022, 103.77451658248903],
+  [1.300642168516196, 103.77532660961153],
+  [1.3004062628156303, 103.77536952495576],
+  [1.3001596341051012, 103.77466678619386],
+  [1.3003740938547321, 103.77458631992342],
+  [1.3006582529949848, 103.77437710762025]
+  ], {
+    color: '#000000',
+    fillColor: COLOR_GREEN,
+    fillOpacity: 0.5,
+    weight: 2
+  }).addTo(map);
+
+  polygon17.bindPopup(
+    `<em><b>Valour House<br><img src="images/utownaudi.jpg" alt="Valour House" style="width: 200px; border-radius: 8px; margin-bottom: 8px;" /><br>Hong Yeow:</b>"I visited here recently to meet up with a friend. The view's pretty magnificent from high up, and the residential area overlooks the University Sports Centre. Really nice place to indulge in sports since the Sports Centre is nearby. It's one of the newest residential housing in the NUS campus, although lodging costs are on the pricier side."<br><br></em>
+     <b>Stress Rating:</b><br> ${generateStressBar(1, 5)}<br>
+     <b>Average Time Spent</b>: 0.5 hours/week`
+  );
+
+  polygon17.on('mouseover', function () {
+    this.setStyle({ fillColor: COLOR_MOUSEOVER });
+    this.openPopup();
+  });
+
+  polygon17.on('mouseout', function () {
+    this.setStyle({ fillColor: COLOR_GREEN});
+    this.closePopup();
+  });
   
   function createFacultyIcon(id, imgSrc, label) {
     return L.divIcon({
