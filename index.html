@@ -1471,9 +1471,17 @@ var yaleMarker = L.marker([1.3066594845408934, 103.7728214263916], {
   icon: createFacultyIcon('yale', 'images/yalenuscollege.jpg', 'Yale-NUS College')
 }).addTo(map);
 
+var dentistryMarker = L.marker([1.296941467352485, 103.78167271614076], {
+  icon: createFacultyIcon('dentistry', 'images/dentistry.jpg', 'Faculty of Dentistry')
+}).addTo(map);
+
+var medicineMarker = L.marker([1.295997843036584, 103.78148496150972], {
+  icon: createFacultyIcon('medicine', 'images/medicine.jpg', 'Yong Loo Lin School of Medicine')
+}).addTo(map);
+
 map.on('zoomend', function () {
   var currentZoom = map.getZoom();
-  ['business', 'computer', 'science', 'art', 'engineering','yale'].forEach(id => {
+  ['business', 'computer', 'science', 'art', 'engineering','yale','dentistry', 'medicine'].forEach(id => {
     var wrapper = document.getElementById(id + '-wrapper');
     if (wrapper) {
       if (currentZoom > 16) {
