@@ -1315,6 +1315,85 @@
     this.setStyle({ fillColor: COLOR_GREEN});
     this.closePopup();
   });
+
+  //Multi Purpose Sports Hall (MPSH) 1-5 
+  var polygon21 = L.polygon([
+  [1.300662287684064, 103.77558148077817],
+  [1.3010484262372692, 103.77571559122892],
+  [1.3007802744704706, 103.77647197417112],
+  [1.3005282117837058, 103.77637541464658],
+  [1.300608657324773, 103.77615010908934],
+  [1.3005872051807386, 103.77615010908934],
+  [1.3003887728397918, 103.77663290671201],
+  [1.3001367101139314, 103.77649879626127],
+  [1.3002922381818092, 103.77606427840085],
+  [1.3000455384834875, 103.77558148077817],
+  [1.3002707860350775, 103.77540445498319],
+  [1.3005013966027945, 103.77581215075345],
+  [1.3005818421447015, 103.77581215075345]
+  ], {
+    color: '#000000',
+    fillColor: COLOR_RED,
+    fillOpacity: 0.5,
+    weight: 2
+  }).addTo(map);
+
+  polygon21.bindPopup(
+    `<em><b>Multi Purpose Sports Hall (MPSH) 1-5 , Biz 1<br><img src="images/mpsh.jpg" alt="Multi Purpose Sports Hall (MPSH) 1-5 " style="width: 200px; border-radius: 8px; margin-bottom: 8px;" /><br>Ryan: </b>"Most stressful place ever in NUS! Most of my final exams are held here throughout my academic life, and I have only ever visited this area for exams. The stress is amplified when you see everyone reading theirs notes and practice papers right outside the hall before the paper begins. 10/10 would not recommend. However, apart from exams season, this area is generally used for sports and recreational activities."<br><br></em>
+     <b>Stress Rating:</b><br> ${generateStressBar(5, 5)}<br>
+     <b>Average Time Spent</b>: 2 hours/week`
+  );
+
+  polygon21.on('mouseover', function () {
+    this.setStyle({ fillColor: COLOR_MOUSEOVER});
+    this.openPopup();
+  });
+
+  polygon21.on('mouseout', function () {
+    this.setStyle({ fillColor: COLOR_RED});
+    this.closePopup();
+  });
+
+  //Sheares Hall 
+  var polygon22 = L.polygon([
+  [1.2911651324363347, 103.77503156661989],
+  [1.2916370813188631, 103.77519786357881],
+  [1.2915083679959574, 103.7756270170212],
+  [1.2914761896642162, 103.77573966979982],
+  [1.2915137310512177, 103.77580940723419],
+  [1.2914011068885591, 103.77614200115204],
+  [1.291009603808107, 103.77593815326692],
+  [1.2910846865953414, 103.77599179744722],
+  [1.2910310560332583, 103.77610981464387],
+  [1.2908058076601947, 103.77603471279146],
+  [1.2909023426796538, 103.775771856308],
+  [1.2909398840751283, 103.77579331398012],
+  [1.2909666993572702, 103.77569675445558],
+  [1.2909237949057208, 103.77569139003755],
+  [1.290955973244459, 103.77555191516878],
+  [1.2909935146391323, 103.77546608448029]
+  ], {
+    color: '#000000',
+    fillColor: COLOR_YELLOW,
+    fillOpacity: 0.5,
+    weight: 2
+  }).addTo(map);
+
+  polygon22.bindPopup(
+    `<em><b>Sheares Hall , Biz 1<br><img src="images/sheares.jpg" alt="Sheares Hall " style="width: 200px; border-radius: 8px; margin-bottom: 8px;" /><br>Ryan: </b>"Even though I don't stay on campus, I have many friends who did and they would often invite me over to their hall in between classes. My memories of this place includes mugging for exams, hitting the gym, and just chilling out with some friends over dinner. I was also sometimes invited to join their hall CCA sessions where I got to meet new people and make friends. "<br><br></em>
+     <b>Stress Rating:</b><br> ${generateStressBar(2, 5)}<br>
+     <b>Average Time Spent</b>: 0.5 hours/week`
+  );
+
+  polygon22.on('mouseover', function () {
+    this.setStyle({ fillColor: COLOR_MOUSEOVER});
+    this.openPopup();
+  });
+
+  polygon22.on('mouseout', function () {
+    this.setStyle({ fillColor: COLOR_YELLOW});
+    this.closePopup();
+  });
   
 function createFacultyIcon(id, imgSrc, label) {
   return L.divIcon({
