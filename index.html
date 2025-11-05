@@ -885,6 +885,51 @@
     this.setStyle({ fillColor: COLOR_RED});
     this.closePopup();
   });
+
+  //Yusof Ishak House (YIH)
+  var polygon20 = L.polygon([
+  [1.2984106107222155, 103.77414643764497],
+  [1.298233630374494, 103.77423763275146],
+  [1.2982979868660098, 103.77434492111207],
+  [1.2981746369224882, 103.77442538738251],
+  [1.2982443564565171, 103.77458631992342],
+  [1.2983194390294963, 103.77454876899719],
+  [1.2983516172743448, 103.77458095550537],
+  [1.2982926238251127, 103.77461314201355],
+  [1.2983623433558973, 103.77477943897247],
+  [1.2982711716614097, 103.77476871013641],
+  [1.2983194390294963, 103.77482235431673],
+  [1.2982282673334569, 103.77490282058716],
+  [1.29832480207033, 103.7750905752182],
+  [1.2987699344204022, 103.77493500709534],
+  [1.2987538453006877, 103.77491354942322],
+  [1.2988503800174724, 103.77486526966096],
+  [1.2987860235400275, 103.77471506595613],
+  [1.2987163040209346, 103.77474188804628],
+  [1.2986894888207745, 103.77463459968568],
+  [1.2986465844999333, 103.77465069293977]
+    ], {
+    color: '#000000',
+    fillColor: COLOR_GREEN,
+    fillOpacity: 0.5,
+    weight: 2
+  }).addTo(map);
+
+  polygon20.bindPopup(
+    `<em><b>Yusof Ishak House (YIH)<br><img src="images/yih.jpg" alt="Yusof Ishak House (YIH)" style="width: 200px; border-radius: 8px; margin-bottom: 8px;" /><br>Ryan: </b>"YIH used to be very different back when I was in year 1, it was recently renovated and there are a lot of facilities and food options in the area. It is a quiet and tranquil area and I would come to YIH sometimes to grab lunch and catch up with friends. It is overall a relaxing place with great atmosphere. A funny story I have with YIH is when Chagee first opened their store here, they ran an opening promotion deal and my friend and I ended up waiting over 6 hours for our tea order!"<br><br></em>
+     <b>Stress Rating:</b><br> ${generateStressBar(1, 5)}<br>
+     <b>Average Time Spent</b>: 1 hour/week`
+  );
+
+  polygon20.on('mouseover', function () {
+    this.setStyle({ fillColor: COLOR_MOUSEOVER });
+    this.openPopup();
+  });
+
+  polygon20.on('mouseout', function () {
+    this.setStyle({ fillColor: COLOR_GREEN});
+    this.closePopup();
+  });
   
   function createFacultyIcon(id, imgSrc, label) {
     return L.divIcon({
