@@ -747,6 +747,18 @@
       }
     });
   });
+  var unshadedPolygon = L.polygon([
+  [1.296, 103.774],
+  [1.297, 103.774],
+  [1.297, 103.775],
+  [1.296, 103.775]
+], {
+  color: '#000000', // border color
+  weight: 2,        // border thickness
+  fillOpacity: 0     // no fill
+}).addTo(map);
+
+unshadedPolygon.bindPopup("This polygon has no shading!");
 
 
 
