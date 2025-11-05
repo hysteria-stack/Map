@@ -1316,11 +1316,15 @@
     this.closePopup();
   });
   
-  function createFacultyIcon(id, imgSrc, label) {
+function createFacultyIcon(id, imgSrc, label) {
   return L.divIcon({
     html: `
-      <div id="${id}-wrapper" 
+      <div id="${id}-wrapper"
            style="
+             display: flex;
+             flex-direction: column;
+             align-items: center;
+             justify-content: center;
              text-align: center;
              transition: opacity 0.8s ease, transform 0.8s ease;
            ">
@@ -1336,21 +1340,21 @@
                margin: 0 auto;
              ">
         ${label ? `<span style="
-          display: block;
           font-size: 12px;
           font-weight: 600;
           color: #333;
           margin-top: 2px;
           font-family: sans-serif;
-          white-space: nowrap;   /* ✅ keeps text in one line */
+          white-space: nowrap;
         ">${label}</span>` : ''}
       </div>
     `,
-    iconSize: [75, 75],
-    iconAnchor: [30, 20],
+    iconSize: null,         // Let Leaflet size it automatically
+    iconAnchor: [30, 20],   // you can tweak if icons look off, e.g. [30, 30]
     className: ''
   });
 }
+
 var businessMarker = L.marker([1.2929315399051828, 103.77392649650575], {
   icon: createFacultyIcon('business', 'images/business.png', 'NUS Business School')
 }).addTo(map);
@@ -1370,6 +1374,7 @@ var artMarker = L.marker([1.2950217206868495, 103.7709492444992], {
 var engineeringMarker = L.marker([1.3003738639522173, 103.77127647399904], {
   icon: createFacultyIcon('engineering', 'images/adjustable-wrench.png', 'School of Design and Environment')
 }).addTo(map);
+
   
   map.on('zoomend', function () {
     var currentZoom = map.getZoom();
