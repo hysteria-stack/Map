@@ -1178,9 +1178,9 @@
     [1.2971502958547878, 103.77358792281846],
     [1.2970913023775286, 103.77357183375999]
   ], {
-    color: COLOR_YELLOW,
+    color: '#000000',
     fillColor: COLOR_YELLOW,
-    fillOpacity: 0.8,
+    fillOpacity: 1,
     weight: 2
   }).addTo(map);
 
@@ -1996,6 +1996,7 @@ function createFacultyIcon(id, imgSrc, label) {
            style="
              text-align: center;
              transition: opacity 0.8s ease, transform 0.8s ease;
+             display: inline-block;
            ">
         <img id="${id}-img"
              src="${imgSrc}"
@@ -2010,14 +2011,21 @@ function createFacultyIcon(id, imgSrc, label) {
              ">
         ${
           label
-            ? `<span style="
-                 display: block;
-                 font-size: 12px;
-                 font-weight: 600;
-                 color: #333;
-                 margin-top: 2px;
-                 font-family: sans-serif;
-               ">${label}</span>`
+            ? `<div id="${id}-label"
+                    style="
+                      display: inline-block;
+                      background: white;
+                      padding: 2px 4px;
+                      border-radius: 3px;
+                      font-size: 12px;
+                      font-weight: 600;
+                      color: #333;
+                      font-family: sans-serif;
+                      margin-top: 2px;
+                      transition: opacity 0.8s ease, transform 0.8s ease;
+                    ">
+                  ${label}
+               </div>`
             : ''
         }
       </div>
@@ -2027,6 +2035,7 @@ function createFacultyIcon(id, imgSrc, label) {
     className: ''
   });
 }
+
 
 var businessMarker = L.marker([1.2929315399051828, 103.77392649650575], {
   icon: createFacultyIcon('business', 'images/business.png', 'NUS Business School')
@@ -2099,6 +2108,7 @@ map.on('zoomend', function () {
     }
   });
 });
+
 
 
 
