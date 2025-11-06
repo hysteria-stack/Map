@@ -1687,7 +1687,7 @@
   }).addTo(map);
 
   polygon14.bindPopup(
-    `<em><b>AS4<br>Sateiish:</b> "My friend is a cat feeder with NUS cat cafe and I accompany him weekly when he feeds one of the cats at AS4. We usually spend 1.5 hr a week here. The cat’s name is M33y Thai and he is in the garden at the department of social work, and is an attraction in and of himself."</em><br><br>
+    `<em><b>AS4<br><img src="images/cat.jpg" alt="AS4" style="width: 200px; border-radius: 8px; margin-bottom: 8px;" /><br>Sateiish:</b> "My friend is a cat feeder with NUS cat cafe and I accompany him weekly when he feeds one of the cats at AS4. We usually spend 1.5 hr a week here. The cat’s name is M33y Thai and he is in the garden at the department of social work, and is an attraction in and of himself."</em><br><br>
      <b>Stress Rating:</b><br> ${generateStressBar(1, 5)}<br>
      <b>Average Time Spent</b>: 1.5 hours/week`
   );
@@ -1988,6 +1988,64 @@
     this.setStyle({ fillColor: COLOR_YELLOW});
     this.closePopup();
   });
+
+  //PGPR
+  var polygon23 = L.polygon([
+  [1.2940021874661738, 103.77702713012695],
+  [1.2938466590117061, 103.77702713012695],
+  [1.2938144807095953, 103.77631902694702],
+  [1.2938144807095953, 103.77634048461914]
+  ], {
+    color: '#000000',
+    fillColor: COLOR_GREEN,
+    fillOpacity: 1,
+    weight: 2
+  }).addTo(map);
+
+  polygon23.bindPopup(
+    `<em><b>Prince George's Park Residence<br><img src="images/pgpr.jpg" alt="Prince George's Park Residence" style="width: 200px; border-radius: 8px; margin-bottom: 8px;" /><br>Sateiish: </b>"My favourite activity is visiting one of my friends at PGPR after my Thursday class. We usually find a spot to study somewhere in the study rooms as we find that it usually is empty. In the beginning of the semester when time was aplenty we would also play basketball to let off some steam."<br><br></em>
+     <b>Stress Rating:</b><br> ${generateStressBar(1, 5)}<br>
+     <b>Average Time Spent</b>: 0.5 hours/week`
+  );
+
+  polygon23.on('mouseover', function () {
+    this.setStyle({ fillColor: COLOR_MOUSEOVER});
+    this.openPopup();
+  });
+
+  polygon23.on('mouseout', function () {
+    this.setStyle({ fillColor: COLOR_GREEN});
+    this.closePopup();
+  });
+
+  //Yale-NUS Library
+  var polygon24 = L.polygon([
+  [1.3071952560130726, 103.77244591712953],
+  [1.3071416257929755, 103.77278387546541],
+  [1.306637501668068, 103.77256393432619],
+  [1.30670185794496, 103.77233862876894]
+  ], {
+    color: '#000000',
+    fillColor: COLOR_RED,
+    fillOpacity: 1,
+    weight: 2
+  }).addTo(map);
+
+  polygon24.bindPopup(
+    `<em><b>Yale-NUS Library<br><img src="images/yalenuslibrary.jpg" alt="Yale-NUS Library" style="width: 200px; border-radius: 8px; margin-bottom: 8px;" /><br>Sateiish: </b>"Before the closure of Yale-Nus, the Yale-NUS library was the ideal place to study for me, replete with wooden furniture and the look of a really aged library, it had the perfect ambiance during exam season, tense but also motivating. I first found it through some of my friends who were students at YNC and eventually it became one of my favourite spots at NUS."<br><br></em>
+     <b>Stress Rating:</b><br> ${generateStressBar(4, 5)}<br>
+     <b>Average Time Spent</b>: 0.5 hours/week`
+  );
+
+  polygon24.on('mouseover', function () {
+    this.setStyle({ fillColor: COLOR_MOUSEOVER});
+    this.openPopup();
+  });
+
+  polygon24.on('mouseout', function () {
+    this.setStyle({ fillColor: COLOR_RED});
+    this.closePopup();
+  });
   
   // === Create faculty icon function ===
 function createFacultyIcon(id, imgSrc, label) {
@@ -2240,9 +2298,9 @@ otherMarkers.forEach(marker => setMarkerVisibility(marker, true));
     const div = L.DomUtil.create('div', 'info legend');
     div.innerHTML = `
       <b>Stress Levels</b><br>
-      <i style="background:${COLOR_GREEN};width:18px;height:18px;display:inline-block;margin-right:5px;border-radius:3px;"></i> Not Stressful<br>
-      <i style="background:${COLOR_YELLOW};width:18px;height:18px;display:inline-block;margin-right:5px;border-radius:3px;"></i> Moderately Stressful<br>
-      <i style="background:${COLOR_RED};width:18px;height:18px;display:inline-block;margin-right:5px;border-radius:3px;"></i> Very Stressful
+      <i style="background:${COLOR_GREEN};width:18px;height:18px;display:inline-block;margin-right:5px;border-radius:3px;"></i> Not Stressful(0-1)<br>
+      <i style="background:${COLOR_YELLOW};width:18px;height:18px;display:inline-block;margin-right:5px;border-radius:3px;"></i> Moderately Stressful(2-3)<br>
+      <i style="background:${COLOR_RED};width:18px;height:18px;display:inline-block;margin-right:5px;border-radius:3px;"></i> Very Stressful(4-5)
       <hr style="margin:6px 0;border:none;border-top:1px solid #ccc;">
   
       <b>Borders</b><br>
