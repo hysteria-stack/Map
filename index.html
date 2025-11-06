@@ -2046,6 +2046,37 @@
     this.setStyle({ fillColor: COLOR_RED});
     this.closePopup();
   });
+
+  //Earth Lab
+  var polygon25 = L.polygon([
+  [1.2953434788488207, 103.77076685428621],
+  [1.295289863806445, 103.7707507610321],
+  [1.295187995222859, 103.77106726169588],
+  [1.295289863806445, 103.77110481262207],
+  [1.2953810093777902, 103.77082586288454]
+], {
+    color: '#000000',
+    fillColor: COLOR_YELLOW,
+    fillOpacity: 1,
+    weight: 2
+  }).addTo(map);
+
+  polygon25.bindPopup(
+    `<em><b>Earth Lab<br><img src="images/earthlab.png" alt="Earth Lab" style="width: 200px; border-radius: 8px; margin-bottom: 8px;" /><br>Hong Yeow: </b>"Biweekly GEX1003 Tutorials! A little more stressful because we're working on our group projects. The professors and teaching assistants facilitate the learning experience really nicely, so we're always grateful for their guidance."<br><br></em>
+     <b>Stress Rating:</b><br> ${generateStressBar(3, 5)}<br>
+     <b>Average Time Spent</b>: 2 hours/week`
+  );
+
+  polygon25.on('mouseover', function () {
+    this.setStyle({ fillColor: COLOR_MOUSEOVER});
+    this.openPopup();
+  });
+
+  polygon25.on('mouseout', function () {
+    this.setStyle({ fillColor: COLOR_YELLOW});
+    this.closePopup();
+  });
+
   
   // === Create faculty icon function ===
 function createFacultyIcon(id, imgSrc, label) {
