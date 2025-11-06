@@ -2077,6 +2077,37 @@
     this.closePopup();
   });
 
+  //Cinnamon College
+  var polygon26 = L.polygon([
+  [1.3068895637431612, 103.77360924062579],
+  [1.3067393991057223, 103.77322307794451],
+  [1.3065034260859054, 103.77334107209711],
+  [1.3065195151561302, 103.7733839790617],
+  [1.3062406379240816, 103.77349660984378],
+  [1.3064068916623042, 103.77381841207814]
+], {
+    color: '#000000',
+    fillColor: COLOR_YELLOW,
+    fillOpacity: 1,
+    weight: 2
+  }).addTo(map);
+
+  polygon26.bindPopup(
+    `<em><b>Cinnamon College<br><img src="images/cinnamon.jpg" alt="Cinnamon College" style="width: 200px; border-radius: 8px; margin-bottom: 8px;" /><br>Hong Yeow: </b>"I visit my friends here sometimes to go for leisure and sports activities. The views and amenities are great, overseeing the UTown Campus. My time spent here is always fun."<br><br></em>
+     <b>Stress Rating:</b><br> ${generateStressBar(2, 5)}<br>
+     <b>Average Time Spent</b>: 1 hour/week`
+  );
+
+  polygon26.on('mouseover', function () {
+    this.setStyle({ fillColor: COLOR_MOUSEOVER});
+    this.openPopup();
+  });
+
+  polygon26.on('mouseout', function () {
+    this.setStyle({ fillColor: COLOR_YELLOW});
+    this.closePopup();
+  });
+
   
   // === Create faculty icon function ===
 function createFacultyIcon(id, imgSrc, label) {
