@@ -2108,6 +2108,77 @@
     this.closePopup();
   });
 
+
+  //Town Green
+  var polygon27 = L.polygon([
+   [1.3052967455244677, 103.77312649851831],
+  [1.3053021085504672, 103.77275106257815],
+  [1.3052645673682297, 103.77265988527846],
+  [1.3051304917128252, 103.7726062515727],
+  [1.3050554093426763, 103.77260088820215],
+  [1.3049910530236355, 103.77261697831388],
+  [1.304873066434423, 103.77278860617218],
+  [1.3048677034075076, 103.77282078639564],
+  [1.304390393966378, 103.77333030660007],
+  [1.3046370932393956, 103.773582385017],
+  [1.3046799974583063, 103.77358774838758],
+  [1.3049803269702882, 103.773469754235],
+  [1.305259204342154, 103.77340003041755],
+  [1.30537719091325, 103.77340003041755],
+  [1.3054200951195531, 103.77335712345297],
+  [1.3053342867062219, 103.77328203626494]
+], {
+    color: '#000000',
+    fillColor: COLOR_GREEN,
+    fillOpacity: 1,
+    weight: 2
+  }).addTo(map);
+
+  polygon27.bindPopup(
+    `<em><b>Town Green<br><img src="images/towngreen.png" alt="Town Green" style="width: 200px; border-radius: 8px; margin-bottom: 8px;" /><br>Elvia: </b>"A fun place where a lot of fun activities such as concerts and performances are held on Fridays and weekends. I often watch performances there after studying in the Education Resource Centre. Appreciate the effort that various interest groups and CCAs put in to deliver amazing performances for us! I always sense a moment of relaxation watching performances there :D"<br><br></em>
+     <b>Stress Rating:</b><br> ${generateStressBar(1, 5)}<br>
+     <b>Average Time Spent</b>: 1 hour/week`
+  );
+
+  polygon27.on('mouseover', function () {
+    this.setStyle({ fillColor: COLOR_MOUSEOVER});
+    this.openPopup();
+  });
+
+  polygon27.on('mouseout', function () {
+    this.setStyle({ fillColor: COLOR_GREEN});
+    this.closePopup();
+  });
+
+    //LT19
+  var polygon28 = L.polygon([
+  [1.2937769393566128, 103.77429607991307],
+  [1.2938359329110576, 103.77445698103026],
+  [1.2934926976660175, 103.77458570192402],
+  [1.2934497932571258, 103.77447307114198]
+], {
+    color: '#000000',
+    fillColor: COLOR_RED,
+    fillOpacity: 1,
+    weight: 2
+  }).addTo(map);
+
+  polygon28.bindPopup(
+    `<em><b>LT19<br><img src="images/lt19.png" alt="LT19" style="width: 200px; border-radius: 8px; margin-bottom: 8px;" /><br>Elvia: </b>"I had only visited the lecture theatre twice but both experiences were to attend lectures on a weekend :’) Probably because it is one of the nearest LT to Biz, professors love to hold make-up classes in LT19. I love the visual and sound systems and the vague space there! Just that it would be even better if we won’t have to go to school on weekends!"<br><br></em>
+     <b>Stress Rating:</b><br> ${generateStressBar(4, 5)}<br>
+     <b>Average Time Spent</b>: 2 hours/week`
+  );
+
+  polygon28.on('mouseover', function () {
+    this.setStyle({ fillColor: COLOR_MOUSEOVER});
+    this.openPopup();
+  });
+
+  polygon28.on('mouseout', function () {
+    this.setStyle({ fillColor: COLOR_RED});
+    this.closePopup();
+  });
+
   
   // === Create faculty icon function ===
 function createFacultyIcon(id, imgSrc, label) {
